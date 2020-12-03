@@ -1,32 +1,81 @@
-name: Test & Build
+on: [push, pull_request]
 
-on: [push]
+name: Continuous integration
 
 jobs:
-  build:
-    name: Builds all crates
+  check:
+    name: Check
     runs-on: ubuntu-latest
-
     steps:
-      - name: checkout git repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --all
 
-      - name: cargo rust
-        uses: actions-rs/cargo@v1.0.1
-
-      - name: build all crates
-        run: cargo build --all --release
+  build:
+    name: Build 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --all
 
   test:
-    name: Run all crate tests
+    name: Test Suite
     runs-on: ubuntu-latest
-
     steps:
-      - name: checkout git repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all
 
-      - name: cargo rust
-        uses: actions-rs/cargo@v1.0.1
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: rustup component add rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
 
-      - name: test all crates
-        run: cargo test --all
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: rustup component add clippy
+      - uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --all -- -D warnings

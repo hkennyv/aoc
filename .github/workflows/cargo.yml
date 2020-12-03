@@ -25,8 +25,8 @@ jobs:
         - name: checkout git repository
           uses: actions/checkout@v2
 
-          uses: actions-rs/cargo@v1.0.1
         - name: cargo rust
+          uses: actions-rs/cargo@v1.0.1
 
         - name: test all crates
           runs: cargo test --all

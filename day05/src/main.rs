@@ -65,8 +65,6 @@ fn main() {
     let contents = fs::read_to_string("input.txt").unwrap();
     let input: Vec<String> = contents.lines().map(|s| s.to_string()).collect();
 
-    println!("len input: {}", input.len());
-
     let res_p1 = input
         .iter()
         .map(|line| (get_row(line), get_column(line)))
@@ -115,7 +113,7 @@ fn get_column(s: &String) -> i32 {
         .map(|ch| charmap.get(&ch).unwrap())
         .take(3)
         .enumerate()
-        .map(|(i, ch)| ch << (2 - i))
+        .map(|(i, ch)| ch << (i))
         .sum();
 
     sum
@@ -144,9 +142,6 @@ fn get_my_seat_id(input: &Vec<String>) -> i32 {
         .map(|(idx, _)| ids[idx] + 1)
         .collect();
 
-    println!("{:?} ({})", ids, ids.len());
-    println!("{:?}", diffs);
-
     *diffs.iter().max().unwrap()
 }
 
@@ -156,8 +151,12 @@ mod tests {
 
     #[test]
     fn test_get_row() {
-        let test_strings: Vec<(&str, i32)> =
-            vec![("FBFBBFFRLR", 44), ("BFFFBBFRRR", 70), ("FFFBBBFRRR", 14)];
+        let test_strings: Vec<(&str, i32)> = vec![
+            ("FBFBBFFRLR", 44),
+            ("BFFFBBFRRR", 70),
+            ("FFFBBBFRRR", 14),
+            ("BBBBFFFRRL", 120),
+        ];
 
         for (s, row) in test_strings.iter() {
             assert_eq!(get_row(&s.to_string()), *row);
@@ -166,8 +165,12 @@ mod tests {
 
     #[test]
     fn test_get_column() {
-        let test_strings: Vec<(&str, i32)> =
-            vec![("FBFBBFFRLR", 5), ("BFFFBBFRRR", 7), ("FFFBBBFRRR", 7)];
+        let test_strings: Vec<(&str, i32)> = vec![
+            ("FBFBBFFRLR", 5),
+            ("BFFFBBFRRR", 7),
+            ("FFFBBBFRRR", 7),
+            ("BBBBFFFRRL", 6),
+        ];
 
         for (s, row) in test_strings.iter() {
             assert_eq!(get_column(&s.to_string()), *row);
@@ -181,10 +184,5 @@ mod tests {
         for (row, col, res) in test_inputs {
             assert_eq!(get_seat_id(row, col), res);
         }
-    }
-
-    #[test]
-    fn test_get_my_seat_id() {
-        assert!(false);
     }
 }

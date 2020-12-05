@@ -1,17 +1,9 @@
 [package]
-name = "aoc-2020"
+name = "day05"
 version = "0.1.0"
-authors = ["hkennyv <hkennyv@gmail.com>"]
+authors = ["Kenny Huynh <hkennyv@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-[workspace]
-members = [
-    "day01",
-    "day02",
-    "day03",
-    "day04",
-    "day05"
-]
 
 [dependencies]

@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["regex"] = [{"text":"impl&lt;'t&gt; Index&lt;usize&gt; for Captures&lt;'t&gt;","synthetic":false,"types":[]},{"text":"impl&lt;'t, 'i&gt; Index&lt;&amp;'i str&gt; for Captures&lt;'t&gt;","synthetic":false,"types":[]},{"text":"impl&lt;'t&gt; Index&lt;usize&gt; for Captures&lt;'t&gt;","synthetic":false,"types":[]},{"text":"impl&lt;'t, 'i&gt; Index&lt;&amp;'i str&gt; for Captures&lt;'t&gt;","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

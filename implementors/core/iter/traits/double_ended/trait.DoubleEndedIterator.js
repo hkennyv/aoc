@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["memchr"] = [{"text":"impl&lt;'a&gt; DoubleEndedIterator for Memchr&lt;'a&gt;","synthetic":false,"types":[]},{"text":"impl&lt;'a&gt; DoubleEndedIterator for Memchr2&lt;'a&gt;","synthetic":false,"types":[]},{"text":"impl&lt;'a&gt; DoubleEndedIterator for Memchr3&lt;'a&gt;","synthetic":false,"types":[]}];
+implementors["regex"] = [{"text":"impl DoubleEndedIterator for SetMatchesIntoIter","synthetic":false,"types":[]},{"text":"impl&lt;'a&gt; DoubleEndedIterator for SetMatchesIter&lt;'a&gt;","synthetic":false,"types":[]},{"text":"impl DoubleEndedIterator for SetMatchesIntoIter","synthetic":false,"types":[]},{"text":"impl&lt;'a&gt; DoubleEndedIterator for SetMatchesIter&lt;'a&gt;","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

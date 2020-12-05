@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["ValidatePassport","a trait that exposes methods to validate the passport for part1 and part2"]],"type":[["Passport",""]]});

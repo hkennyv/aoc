@@ -1,0 +1,5 @@
+(function() {var implementors = {};
+implementors["aho_corasick"] = [{"text":"impl Copy for MatchKind","synthetic":false,"types":[]},{"text":"impl Copy for MatchKind","synthetic":false,"types":[]}];
+implementors["regex"] = [{"text":"impl&lt;'t&gt; Copy for Match&lt;'t&gt;","synthetic":false,"types":[]},{"text":"impl&lt;'t&gt; Copy for Match&lt;'t&gt;","synthetic":false,"types":[]}];
+implementors["regex_syntax"] = [{"text":"impl Copy for Span","synthetic":false,"types":[]},{"text":"impl Copy for Position","synthetic":false,"types":[]},{"text":"impl Copy for ClassSetBinaryOpKind","synthetic":false,"types":[]},{"text":"impl Copy for Flag","synthetic":false,"types":[]},{"text":"impl Copy for ClassUnicodeRange","synthetic":false,"types":[]},{"text":"impl Copy for ClassBytesRange","synthetic":false,"types":[]},{"text":"impl Copy for Utf8Sequence","synthetic":false,"types":[]},{"text":"impl Copy for Utf8Range","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

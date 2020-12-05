@@ -1,4 +1,15 @@
+<p align="center">
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3Agh-pages"><img alt="gh-pages" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/gh-pages?label=gh-pages"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3ABuild"><img alt="build" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Build?label=build"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3ATest"><img alt="test" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Test?label=test"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3AFormat"><img alt="format" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Format?label=format"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3AClippy"><img alt="clippy" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Clippy?label=clippy"></a>
+</p>
+
+
 # Advent of Code
+
+### Documentation: <https://hkennyv.github.io/aoc/aoc_2020/index.html>
 
 ## Overview
 
@@ -29,4 +40,4 @@ And the documentation should automatically open up in your browser. Each of the
 AOC days should appear in the left-hand sidebar as its own crate that you can
 choose to view.
 
-**WIP:** deploy rustdoc pages to github pages... coming soon (hopefully)!
+Or if you'd like, you can view the [docs online @ github pages](https://hkennyv.github.io/aoc/day01/index.html).

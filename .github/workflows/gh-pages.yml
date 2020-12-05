@@ -1,0 +1,30 @@
+# This workflow publishes any commits onto master to gh-pages
+name: gh-pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+      - name: build docs for entire workspace
+        env:
+          RUSTDOCFLAGS: --enable-index-page -Zunstable-options
+        run: cargo +nightly doc --workspace
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: target/doc
+          PRESERVE: true

@@ -5,7 +5,17 @@
 This repository contains my solutions for Advent of Code (AOC) 2020. I'm taking
 this year's AOC to sharpen my [rust](https://www.rust-lang.org/) skills.
 
-**Bonus:** the whole repository is a cargo crate, and I've added the description
+## How to use
+
+Any day of the AOC can be run by going into that day's directory and running:
+
+```
+cargo run
+```
+
+## Documentation
+
+**Bonus:** The whole repository is a cargo crate, and I've added the description
 of each day's challenge to the crate description so you can view all all of the
 challenges and all of the functions and their docstrings that I used.
 

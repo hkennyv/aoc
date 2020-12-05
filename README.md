@@ -18,3 +18,5 @@ cargo doc --workspace --open
 And the documentation should automatically open up in your browser. Each of the
 AOC days should appear in the left-hand sidebar as its own crate that you can
 choose to view.
+
+**WIP:** deploy rustdoc pages to github pages... coming soon (hopefully)!

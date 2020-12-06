@@ -98,12 +98,12 @@ fn main() {
 }
 
 /// performs the tree counting for part1
-fn count_trees_p1(forest: &Vec<Vec<char>>) -> i32 {
+fn count_trees_p1(forest: &[Vec<char>]) -> i32 {
     count_trees(forest, 3, 1)
 }
 
 /// performs the tree counting for part2
-fn count_trees_p2(forest: &Vec<Vec<char>>) -> i64 {
+fn count_trees_p2(forest: &[Vec<char>]) -> i64 {
     let mut res: Vec<i64> = Vec::new();
 
     res.push(count_trees(forest, 1, 1).into());
@@ -118,7 +118,7 @@ fn count_trees_p2(forest: &Vec<Vec<char>>) -> i64 {
 /// counts the number of trees given a forest, a right_slope, and a left_slope
 /// where the forest is a 2D vector of of length m x n where the trees are
 /// represented by a '#' and the empty space is represented by a '.'
-fn count_trees(forest: &Vec<Vec<char>>, right_slope: i32, left_slope: i32) -> i32 {
+fn count_trees(forest: &[Vec<char>], right_slope: i32, left_slope: i32) -> i32 {
     let height = forest.len();
     let width = forest[0].len(); // assumes all rows are same length
 

@@ -56,4 +56,4 @@ The documentation should automatically open up in your browser. Each of the
 AOC days should appear in the left-hand sidebar as its own crate that you can
 choose to view.
 
-Or if you'd like, you can view the [docs online @ github pages](https://hkennyv.github.io/aoc/day01/index.html).
+Or if you'd like, you can view the [docs online @ github pages](https://hkennyv.github.io/aoc/day01/index.html) (or view the github action that automatically publishes this site [here](https://github.com/hkennyv/aoc/blob/master/.github/workflows/gh-pages.yml)).

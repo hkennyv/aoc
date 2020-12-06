@@ -119,7 +119,7 @@ fn main() {
 ///
 /// TODO: this can be optimized by buliding a set from the persons iterator
 /// without having to iterate through the vec of people
-fn count_questions_from_anyone(input: &Vec<Vec<String>>) -> i32 {
+fn count_questions_from_anyone(input: &[Vec<String>]) -> i32 {
     let res: i32 = input
         .iter()
         .map(|group| {
@@ -141,7 +141,7 @@ fn count_questions_from_anyone(input: &Vec<Vec<String>>) -> i32 {
 
 /// sum the count of the number of questions to which _everyone_ answered
 /// yes to in each group
-fn count_questions_from_everyone(input: &Vec<Vec<String>>) -> i32 {
+fn count_questions_from_everyone(input: &[Vec<String>]) -> i32 {
     let res: i32 = input
         .iter()
         .map(|group| {

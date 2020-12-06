@@ -88,7 +88,7 @@ fn main() {
 /// is in (binary). think of 'B' as a 1 and 'F' as 0.
 ///
 /// e.g. FBFBBFF = 0101100 = row 44
-fn get_row(s: &String) -> i32 {
+fn get_row(s: &str) -> i32 {
     let charmap: HashMap<char, i32> = [('F', 0), ('B', 1)].iter().cloned().collect();
 
     let sum: i32 = s
@@ -107,7 +107,7 @@ fn get_row(s: &String) -> i32 {
 /// of 'L' as 0 and 'R' as 1
 ///
 /// e.g. LLL = 000 = col 0, RRR = 111 = col 7
-fn get_column(s: &String) -> i32 {
+fn get_column(s: &str) -> i32 {
     let charmap: HashMap<char, i32> = [('L', 0), ('R', 1)].iter().cloned().collect();
 
     let sum: i32 = s
@@ -128,20 +128,20 @@ fn get_seat_id(row: i32, col: i32) -> i32 {
 }
 
 /// calculates _my_ seat id
-fn get_my_seat_id(input: &Vec<String>) -> i32 {
+fn get_my_seat_id(input: &[String]) -> i32 {
     let mut ids: Vec<i32> = input
         .iter()
         .map(|line| (get_row(line), get_column(line)))
         .map(|(row, col)| get_seat_id(row, col))
         .collect();
 
-    ids.sort();
+    ids.sort_unstable();
 
     let diffs: Vec<i32> = ids
         .windows(2)
         .map(|slice| (slice[1] - slice[0]))
         .enumerate()
-        .filter(|(i, diff)| *diff > 1)
+        .filter(|(_, diff)| *diff > 1)
         .map(|(idx, _)| ids[idx] + 1)
         .collect();
 

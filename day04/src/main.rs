@@ -136,8 +136,6 @@
 use std::collections::HashMap;
 use std::fs;
 
-use regex::Regex;
-
 mod passport;
 use passport::ValidatePassport;
 
@@ -152,7 +150,7 @@ fn main() {
         .iter()
         .map(|line| parse_passport(&line))
         .map(|passport| passport.is_valid_p1())
-        .filter(|res| *res == true)
+        .filter(|res| *res)
         .count();
 
     println!("RESULT pt1: {}", res_p1);
@@ -161,18 +159,18 @@ fn main() {
         .iter()
         .map(|line| parse_passport(&line))
         .map(|passport| passport.is_valid_p2())
-        .filter(|res| *res == true)
+        .filter(|res| *res)
         .count();
 
     println!("RESULT pt2: {}", res_p2);
 }
 
 /// parses the key, value pairs from the passport string and returns a hashmap
-fn parse_passport(data: &String) -> passport::Passport {
+fn parse_passport(data: &str) -> passport::Passport {
     let mut passport: passport::Passport = HashMap::new();
 
     data.split_whitespace().for_each(|field| {
-        let field_split: Vec<&str> = field.split(":").collect();
+        let field_split: Vec<&str> = field.split(':').collect();
         let key = field_split[0];
         let value = field_split[1];
 

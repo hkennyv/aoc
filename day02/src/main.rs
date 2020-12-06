@@ -101,9 +101,9 @@ fn password_is_valid_p1(policy: String, password: String) -> bool {
 
     if letter_count.contains_key(&letter) {
         let val = *letter_count.get(&letter).unwrap();
-        return val >= min && val <= max;
+        val >= min && val <= max
     } else {
-        return false;
+        false
     }
 }
 
@@ -127,7 +127,7 @@ fn password_is_valid_p2(policy: String, password: String) -> bool {
 ///     policy: password
 /// and it returns a tuple containing the (policy, password)
 fn parse_input_row(row: String) -> (String, String) {
-    let split: Vec<&str> = row.split(":").collect();
+    let split: Vec<&str> = row.split(':').collect();
     let policy = String::from(split[0]);
     let mut password = String::from(split[1]);
     password = password.strip_prefix(" ").unwrap().to_string();
@@ -137,11 +137,11 @@ fn parse_input_row(row: String) -> (String, String) {
 
 /// parses the policy into a two numbers and a letter
 fn parse_policy(policy: String) -> (i32, i32, char) {
-    let split: Vec<&str> = policy.split(" ").collect();
+    let split: Vec<&str> = policy.split(' ').collect();
     let nums = split[0];
-    let letter = split[1].chars().nth(0).unwrap();
+    let letter = split[1].chars().next().unwrap();
 
-    let nums_split: Vec<i32> = nums.split("-").map(|n| n.parse::<i32>().unwrap()).collect();
+    let nums_split: Vec<i32> = nums.split('-').map(|n| n.parse::<i32>().unwrap()).collect();
     let num1 = nums_split[0];
     let num2 = nums_split[1];
 

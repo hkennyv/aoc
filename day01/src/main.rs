@@ -62,7 +62,7 @@ fn main() {
 }
 
 /// The part1 function calculates the result for part1
-fn part1(input: &Vec<i32>) -> Result<i32, String> {
+fn part1(input: &[i32]) -> Result<i32, String> {
     let unique_inputs: HashSet<i32> = input.iter().cloned().collect();
 
     // find compliment
@@ -79,10 +79,10 @@ fn part1(input: &Vec<i32>) -> Result<i32, String> {
 }
 
 /// The part2 function calculates the result for part2
-fn part2(input: &Vec<i32>) -> Result<i32, String> {
+fn part2(input: &[i32]) -> Result<i32, String> {
     // clone and sort input
-    let mut input = input.clone();
-    input.sort();
+    let mut input = input.to_owned();
+    input.sort_unstable();
 
     // find 3 numbers that add up to 2020
     // use 3 indices to track our place in the vec (2 on the left, 1 on the

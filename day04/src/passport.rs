@@ -44,7 +44,7 @@ pub trait ValidatePassport {
 impl ValidatePassport for Passport {
     fn is_valid_p1(&self) -> bool {
         let required_fields = vec!["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
-        let optional_fields = vec!["cid"];
+        // let optional_fields = vec!["cid"];
 
         for field in required_fields {
             // if !passport.contains_key(&String::from(field)) {
@@ -66,7 +66,7 @@ impl ValidatePassport for Passport {
             Self::validate_ecl,
             Self::validate_pid,
         ];
-        let optional_fields = vec!["cid"];
+        // let optional_fields = vec!["cid"];
 
         for i in 0..required_fields.len() {
             let field = required_fields[i];
@@ -75,7 +75,7 @@ impl ValidatePassport for Passport {
 
             match val {
                 Some(s) => {
-                    if validation_fn(s.to_string()) != true {
+                    if !validation_fn(s.to_string()) {
                         return false;
                     }
                 }
@@ -88,17 +88,17 @@ impl ValidatePassport for Passport {
 
     fn validate_byr(byr: String) -> bool {
         let year: i32 = byr.parse().unwrap_or(-1);
-        (year >= 1920) && (year <= 2002)
+        (1920..=2002).contains(&year)
     }
 
     fn validate_iyr(iyr: String) -> bool {
         let year: i32 = iyr.parse().unwrap_or(-1);
-        (year >= 2010) && (year <= 2020)
+        (2010..=2020).contains(&year)
     }
 
     fn validate_eyr(eyr: String) -> bool {
         let year: i32 = eyr.parse().unwrap_or(-1);
-        (year >= 2020) && (year <= 2030)
+        (2020..=2030).contains(&year)
     }
 
     fn validate_hgt(hgt: String) -> bool {
@@ -116,8 +116,8 @@ impl ValidatePassport for Passport {
                 let unit = captures.get(2).unwrap().as_str();
 
                 match unit {
-                    "cm" => (val >= 150) && (val <= 193),
-                    "in" => (val >= 59) && (val <= 76),
+                    "cm" => (150..=193).contains(&val),
+                    "in" => (59..=76).contains(&val),
                     _ => false,
                 }
             }
@@ -144,6 +144,7 @@ impl ValidatePassport for Passport {
         re.is_match(&pid)
     }
 
+    #[allow(unused_variables)]
     fn validate_cid(cid: String) -> bool {
         true
     }

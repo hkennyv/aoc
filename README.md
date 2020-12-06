@@ -6,7 +6,6 @@
   <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3AClippy"><img alt="clippy" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Clippy?label=clippy"></a>
 </p>
 
-
 # Advent of Code
 
 ### Documentation: <https://hkennyv.github.io/aoc/aoc_2020/index.html>
@@ -16,7 +15,17 @@
 This repository contains my solutions for Advent of Code (AOC) 2020. I'm taking
 this year's AOC to sharpen my [rust](https://www.rust-lang.org/) skills.
 
+You can view the [Advent of Code 2020 here](https://adventofcode.com/2020).
+
 ## How to use
+
+### Prerequisites
+
+- install rust using [rustup](https://www.rust-lang.org/tools/install) (this
+  should install the cargo toolchain as well). using the nightly build is
+  recommended
+
+### Running the code
 
 Any day of the AOC can be run by going into that day's directory and running:
 
@@ -30,13 +39,14 @@ cargo run
 of each day's challenge to the crate description so you can view all all of the
 challenges and all of the functions and their docstrings that I used.
 
-To build the documentation, simply run:
+To build the documentation, simply run the following command in the top-level
+crate:
 
 ```
 cargo doc --workspace --open
 ```
 
-And the documentation should automatically open up in your browser. Each of the
+The documentation should automatically open up in your browser. Each of the
 AOC days should appear in the left-hand sidebar as its own crate that you can
 choose to view.
 

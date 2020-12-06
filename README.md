@@ -33,6 +33,12 @@ Any day of the AOC can be run by going into that day's directory and running:
 cargo run
 ```
 
+**NOTE:** everyone's input for the advent of code is different. I've committed
+the input for my account in this repository and the answers for my input in
+the documentation, however, feel free to run the solutions using your own
+input. Each crate reads from an "input.txt" file in their respective
+directories.
+
 ## Documentation
 
 **Bonus:** The whole repository is a cargo crate, and I've added the description

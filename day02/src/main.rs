@@ -24,6 +24,8 @@
 //!
 //! How many passwords are valid according to their policies?
 //!
+//! Your puzzle answer was 398.
+//!
 //! ## --- Part Two ---
 //!
 //! While it appears you validated the passwords correctly, they don't seem to be what the Official Toboggan Corporate Authentication System is expecting.
@@ -42,6 +44,7 @@
 //!
 //! How many passwords are valid according to the new interpretation of the policies?
 //!
+//! Your puzzle answer was 562.
 
 use std::collections::HashMap;
 use std::fs;

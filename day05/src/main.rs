@@ -21,8 +21,9 @@
 //! B keeps rows 44 through 47.
 //! F keeps rows 44 through 45.
 //! The final F keeps the lower of the two, row 44.
-//! The last three characters will be either L or R; these specify exactly one of the 8 columns of seats on the plane (numbered 0 through 7). The same process as above proceeds again, this time with only three steps. L means to keep the lower half, while R means to keep the upper half.
 //! ```
+//!
+//! The last three characters will be either L or R; these specify exactly one of the 8 columns of seats on the plane (numbered 0 through 7). The same process as above proceeds again, this time with only three steps. L means to keep the lower half, while R means to keep the upper half.
 //!
 //! For example, consider just the last 3 characters of FBFBBFFRLR:
 //!
@@ -46,6 +47,8 @@
 //!
 //! As a sanity check, look through your list of boarding passes. What is the highest seat ID on a boarding pass?
 //!
+//! Your puzzle answer was 998.
+//!
 //! ## --- Part Two ---
 //!
 //! Ding! The "fasten seat belt" signs have turned on. Time to find your seat.
@@ -56,7 +59,7 @@
 //!
 //! What is the ID of your seat?
 //!
-//!
+//! Your puzzle answer was 676.
 
 use std::collections::HashMap;
 use std::fs;

@@ -49,6 +49,8 @@
 //!
 //! For each group, count the number of questions to which anyone answered "yes". What is the sum of those counts?
 //!
+//! Your puzzle answer was 6885.
+//!
 //! ## --- Part Two ---
 //!
 //! As you finish the last group's customs declaration, you notice that you misread one word in the instructions:
@@ -87,6 +89,8 @@
 //! ```
 //!
 //! For each group, count the number of questions to which everyone answered "yes". What is the sum of those counts?
+//!
+//! Your puzzle answer was 3550.
 
 use std::collections::HashMap;
 use std::fs;
@@ -103,10 +107,10 @@ fn main() {
         .map(|group| group.lines().map(|line| line.to_string()).collect())
         .collect();
 
-    let res_p1 = count_questions_from_groups1(&input);
+    let res_p1 = count_questions_from_anyone(&input);
     println!("{}", res_p1);
 
-    let res_p2 = count_questions_from_groups2(&input);
+    let res_p2 = count_questions_from_everyone(&input);
     println!("{}", res_p2);
 }
 
@@ -115,7 +119,7 @@ fn main() {
 ///
 /// TODO: this can be optimized by buliding a set from the persons iterator
 /// without having to iterate through the vec of people
-fn count_questions_from_groups1(input: &Vec<Vec<String>>) -> i32 {
+fn count_questions_from_anyone(input: &Vec<Vec<String>>) -> i32 {
     let res: i32 = input
         .iter()
         .map(|group| {
@@ -137,7 +141,7 @@ fn count_questions_from_groups1(input: &Vec<Vec<String>>) -> i32 {
 
 /// sum the count of the number of questions to which _everyone_ answered
 /// yes to in each group
-fn count_questions_from_groups2(input: &Vec<Vec<String>>) -> i32 {
+fn count_questions_from_everyone(input: &Vec<Vec<String>>) -> i32 {
     let res: i32 = input
         .iter()
         .map(|group| {

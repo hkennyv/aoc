@@ -60,6 +60,8 @@ In this example, traversing the map using this slope would cause you to encounte
 
 Starting at the top-left corner of your map and following a slope of right 3 and down 1, how many trees would you encounter?
 
+Your puzzle answer was 159.
+
 ## --- Part Two ---
 
 Time to check the rest of the slopes - you need to minimize the probability of a sudden arboreal stop, after all.
@@ -77,3 +79,5 @@ Right 1, down 2.
 In the above example, these slopes would find 2, 7, 3, 4, and 2 tree(s) respectively; multiplied together, these produce the answer 336.
 
 What do you get if you multiply together the number of trees encountered on each of the listed slopes?
+
+Your puzzle answer was 6419669520.

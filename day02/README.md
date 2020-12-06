@@ -24,7 +24,7 @@ How many passwords are valid according to their policies?
 
 Your puzzle answer was 398.
 
-The first half of this puzzle is complete! It provides one gold star: *
+The first half of this puzzle is complete! It provides one gold star: \*
 
 ## --- Part Two ---
 
@@ -42,4 +42,6 @@ Given the same example list from above:
 2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
 ```
 
-How many passwords are valid according to the new interpretation of the policies?
+How many passwords are valid according to the new interpretation of the policies?o
+
+Your puzzle answer was 562.

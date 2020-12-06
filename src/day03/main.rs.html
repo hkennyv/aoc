@@ -248,12 +248,12 @@
 }
 
 <span class="doccomment">/// performs the tree counting for part1</span>
-<span class="kw">fn</span> <span class="ident">count_trees_p1</span>(<span class="ident">forest</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">count_trees_p1</span>(<span class="ident">forest</span>: <span class="kw-2">&amp;</span>[<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="ident">count_trees</span>(<span class="ident">forest</span>, <span class="number">3</span>, <span class="number">1</span>)
 }
 
 <span class="doccomment">/// performs the tree counting for part2</span>
-<span class="kw">fn</span> <span class="ident">count_trees_p2</span>(<span class="ident">forest</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i64</span> {
+<span class="kw">fn</span> <span class="ident">count_trees_p2</span>(<span class="ident">forest</span>: <span class="kw-2">&amp;</span>[<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i64</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
 
     <span class="ident">res</span>.<span class="ident">push</span>(<span class="ident">count_trees</span>(<span class="ident">forest</span>, <span class="number">1</span>, <span class="number">1</span>).<span class="ident">into</span>());
@@ -268,7 +268,7 @@
 <span class="doccomment">/// counts the number of trees given a forest, a right_slope, and a left_slope</span>
 <span class="doccomment">/// where the forest is a 2D vector of of length m x n where the trees are</span>
 <span class="doccomment">/// represented by a &#39;#&#39; and the empty space is represented by a &#39;.&#39;</span>
-<span class="kw">fn</span> <span class="ident">count_trees</span>(<span class="ident">forest</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">right_slope</span>: <span class="ident">i32</span>, <span class="ident">left_slope</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">count_trees</span>(<span class="ident">forest</span>: <span class="kw-2">&amp;</span>[<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>], <span class="ident">right_slope</span>: <span class="ident">i32</span>, <span class="ident">left_slope</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">forest</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">forest</span>[<span class="number">0</span>].<span class="ident">len</span>(); <span class="comment">// assumes all rows are same length</span>
 

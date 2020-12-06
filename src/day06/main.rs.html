@@ -288,7 +288,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// TODO: this can be optimized by buliding a set from the persons iterator</span>
 <span class="doccomment">/// without having to iterate through the vec of people</span>
-<span class="kw">fn</span> <span class="ident">count_questions_from_anyone</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">count_questions_from_anyone</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">input</span>
         .<span class="ident">iter</span>()
         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">group</span><span class="op">|</span> {
@@ -310,7 +310,7 @@
 
 <span class="doccomment">/// sum the count of the number of questions to which _everyone_ answered</span>
 <span class="doccomment">/// yes to in each group</span>
-<span class="kw">fn</span> <span class="ident">count_questions_from_everyone</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">count_questions_from_everyone</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">input</span>
         .<span class="ident">iter</span>()
         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">group</span><span class="op">|</span> {

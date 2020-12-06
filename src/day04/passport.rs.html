@@ -197,6 +197,7 @@
 <span id="194">194</span>
 <span id="195">195</span>
 <span id="196">196</span>
+<span id="197">197</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">regex</span>::<span class="ident">Regex</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
@@ -244,7 +245,7 @@
 <span class="kw">impl</span> <span class="ident">ValidatePassport</span> <span class="kw">for</span> <span class="ident">Passport</span> {
     <span class="kw">fn</span> <span class="ident">is_valid_p1</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">required_fields</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;byr&quot;</span>, <span class="string">&quot;iyr&quot;</span>, <span class="string">&quot;eyr&quot;</span>, <span class="string">&quot;hgt&quot;</span>, <span class="string">&quot;hcl&quot;</span>, <span class="string">&quot;ecl&quot;</span>, <span class="string">&quot;pid&quot;</span>];
-        <span class="kw">let</span> <span class="ident">optional_fields</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;cid&quot;</span>];
+        <span class="comment">// let optional_fields = vec![&quot;cid&quot;];</span>
 
         <span class="kw">for</span> <span class="ident">field</span> <span class="kw">in</span> <span class="ident">required_fields</span> {
             <span class="comment">// if !passport.contains_key(&amp;String::from(field)) {</span>
@@ -266,7 +267,7 @@
             <span class="self">Self</span>::<span class="ident">validate_ecl</span>,
             <span class="self">Self</span>::<span class="ident">validate_pid</span>,
         ];
-        <span class="kw">let</span> <span class="ident">optional_fields</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;cid&quot;</span>];
+        <span class="comment">// let optional_fields = vec![&quot;cid&quot;];</span>
 
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">required_fields</span>.<span class="ident">len</span>() {
             <span class="kw">let</span> <span class="ident">field</span> <span class="op">=</span> <span class="ident">required_fields</span>[<span class="ident">i</span>];
@@ -275,7 +276,7 @@
 
             <span class="kw">match</span> <span class="ident">val</span> {
                 <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">if</span> <span class="ident">validation_fn</span>(<span class="ident">s</span>.<span class="ident">to_string</span>()) <span class="op">!</span><span class="op">=</span> <span class="bool-val">true</span> {
+                    <span class="kw">if</span> <span class="op">!</span><span class="ident">validation_fn</span>(<span class="ident">s</span>.<span class="ident">to_string</span>()) {
                         <span class="kw">return</span> <span class="bool-val">false</span>;
                     }
                 }
@@ -288,17 +289,17 @@
 
     <span class="kw">fn</span> <span class="ident">validate_byr</span>(<span class="ident">byr</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">year</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">byr</span>.<span class="ident">parse</span>().<span class="ident">unwrap_or</span>(<span class="op">-</span><span class="number">1</span>);
-        (<span class="ident">year</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1920</span>) <span class="op">&amp;&amp;</span> (<span class="ident">year</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">2002</span>)
+        (<span class="number">1920</span>..<span class="op">=</span><span class="number">2002</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">year</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">validate_iyr</span>(<span class="ident">iyr</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">year</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">iyr</span>.<span class="ident">parse</span>().<span class="ident">unwrap_or</span>(<span class="op">-</span><span class="number">1</span>);
-        (<span class="ident">year</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2010</span>) <span class="op">&amp;&amp;</span> (<span class="ident">year</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">2020</span>)
+        (<span class="number">2010</span>..<span class="op">=</span><span class="number">2020</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">year</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">validate_eyr</span>(<span class="ident">eyr</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">year</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">eyr</span>.<span class="ident">parse</span>().<span class="ident">unwrap_or</span>(<span class="op">-</span><span class="number">1</span>);
-        (<span class="ident">year</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2020</span>) <span class="op">&amp;&amp;</span> (<span class="ident">year</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">2030</span>)
+        (<span class="number">2020</span>..<span class="op">=</span><span class="number">2030</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">year</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">validate_hgt</span>(<span class="ident">hgt</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -316,8 +317,8 @@
                 <span class="kw">let</span> <span class="ident">unit</span> <span class="op">=</span> <span class="ident">captures</span>.<span class="ident">get</span>(<span class="number">2</span>).<span class="ident">unwrap</span>().<span class="ident">as_str</span>();
 
                 <span class="kw">match</span> <span class="ident">unit</span> {
-                    <span class="string">&quot;cm&quot;</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">val</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">150</span>) <span class="op">&amp;&amp;</span> (<span class="ident">val</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">193</span>),
-                    <span class="string">&quot;in&quot;</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">val</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">59</span>) <span class="op">&amp;&amp;</span> (<span class="ident">val</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">76</span>),
+                    <span class="string">&quot;cm&quot;</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="number">150</span>..<span class="op">=</span><span class="number">193</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">val</span>),
+                    <span class="string">&quot;in&quot;</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="number">59</span>..<span class="op">=</span><span class="number">76</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">val</span>),
                     <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
                 }
             }
@@ -344,6 +345,7 @@
         <span class="ident">re</span>.<span class="ident">is_match</span>(<span class="kw-2">&amp;</span><span class="ident">pid</span>)
     }
 
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">validate_cid</span>(<span class="ident">cid</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="bool-val">true</span>
     }

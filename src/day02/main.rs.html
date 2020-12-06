@@ -254,9 +254,9 @@
 
     <span class="kw">if</span> <span class="ident">letter_count</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="ident">letter</span>) {
         <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">letter_count</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">letter</span>).<span class="ident">unwrap</span>();
-        <span class="kw">return</span> <span class="ident">val</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">min</span> <span class="op">&amp;&amp;</span> <span class="ident">val</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>;
+        <span class="ident">val</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">min</span> <span class="op">&amp;&amp;</span> <span class="ident">val</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>
     } <span class="kw">else</span> {
-        <span class="kw">return</span> <span class="bool-val">false</span>;
+        <span class="bool-val">false</span>
     }
 }
 
@@ -280,7 +280,7 @@
 <span class="doccomment">///     policy: password</span>
 <span class="doccomment">/// and it returns a tuple containing the (policy, password)</span>
 <span class="kw">fn</span> <span class="ident">parse_input_row</span>(<span class="ident">row</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">String</span>, <span class="ident">String</span>) {
-    <span class="kw">let</span> <span class="ident">split</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">split</span>(<span class="string">&quot;:&quot;</span>).<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="ident">split</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">split</span>(<span class="string">&#39;:&#39;</span>).<span class="ident">collect</span>();
     <span class="kw">let</span> <span class="ident">policy</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="ident">split</span>[<span class="number">0</span>]);
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">password</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="ident">split</span>[<span class="number">1</span>]);
     <span class="ident">password</span> <span class="op">=</span> <span class="ident">password</span>.<span class="ident">strip_prefix</span>(<span class="string">&quot; &quot;</span>).<span class="ident">unwrap</span>().<span class="ident">to_string</span>();
@@ -290,11 +290,11 @@
 
 <span class="doccomment">/// parses the policy into a two numbers and a letter</span>
 <span class="kw">fn</span> <span class="ident">parse_policy</span>(<span class="ident">policy</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">char</span>) {
-    <span class="kw">let</span> <span class="ident">split</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">policy</span>.<span class="ident">split</span>(<span class="string">&quot; &quot;</span>).<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="ident">split</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">policy</span>.<span class="ident">split</span>(<span class="string">&#39; &#39;</span>).<span class="ident">collect</span>();
     <span class="kw">let</span> <span class="ident">nums</span> <span class="op">=</span> <span class="ident">split</span>[<span class="number">0</span>];
-    <span class="kw">let</span> <span class="ident">letter</span> <span class="op">=</span> <span class="ident">split</span>[<span class="number">1</span>].<span class="ident">chars</span>().<span class="ident">nth</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">letter</span> <span class="op">=</span> <span class="ident">split</span>[<span class="number">1</span>].<span class="ident">chars</span>().<span class="ident">next</span>().<span class="ident">unwrap</span>();
 
-    <span class="kw">let</span> <span class="ident">nums_split</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">nums</span>.<span class="ident">split</span>(<span class="string">&quot;-&quot;</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>()).<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="ident">nums_split</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">nums</span>.<span class="ident">split</span>(<span class="string">&#39;-&#39;</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>()).<span class="ident">collect</span>();
     <span class="kw">let</span> <span class="ident">num1</span> <span class="op">=</span> <span class="ident">nums_split</span>[<span class="number">0</span>];
     <span class="kw">let</span> <span class="ident">num2</span> <span class="op">=</span> <span class="ident">nums_split</span>[<span class="number">1</span>];
 

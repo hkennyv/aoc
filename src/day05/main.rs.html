@@ -283,7 +283,7 @@
 <span class="doccomment">/// is in (binary). think of &#39;B&#39; as a 1 and &#39;F&#39; as 0.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// e.g. FBFBBFF = 0101100 = row 44</span>
-<span class="kw">fn</span> <span class="ident">get_row</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">get_row</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">charmap</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">char</span>, <span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> [(<span class="string">&#39;F&#39;</span>, <span class="number">0</span>), (<span class="string">&#39;B&#39;</span>, <span class="number">1</span>)].<span class="ident">iter</span>().<span class="ident">cloned</span>().<span class="ident">collect</span>();
 
     <span class="kw">let</span> <span class="ident">sum</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">s</span>
@@ -302,7 +302,7 @@
 <span class="doccomment">/// of &#39;L&#39; as 0 and &#39;R&#39; as 1</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// e.g. LLL = 000 = col 0, RRR = 111 = col 7</span>
-<span class="kw">fn</span> <span class="ident">get_column</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">get_column</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">charmap</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">char</span>, <span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> [(<span class="string">&#39;L&#39;</span>, <span class="number">0</span>), (<span class="string">&#39;R&#39;</span>, <span class="number">1</span>)].<span class="ident">iter</span>().<span class="ident">cloned</span>().<span class="ident">collect</span>();
 
     <span class="kw">let</span> <span class="ident">sum</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">s</span>
@@ -323,20 +323,20 @@
 }
 
 <span class="doccomment">/// calculates _my_ seat id</span>
-<span class="kw">fn</span> <span class="ident">get_my_seat_id</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+<span class="kw">fn</span> <span class="ident">get_my_seat_id</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">String</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ids</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>
         .<span class="ident">iter</span>()
         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">line</span><span class="op">|</span> (<span class="ident">get_row</span>(<span class="ident">line</span>), <span class="ident">get_column</span>(<span class="ident">line</span>)))
         .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">row</span>, <span class="ident">col</span>)<span class="op">|</span> <span class="ident">get_seat_id</span>(<span class="ident">row</span>, <span class="ident">col</span>))
         .<span class="ident">collect</span>();
 
-    <span class="ident">ids</span>.<span class="ident">sort</span>();
+    <span class="ident">ids</span>.<span class="ident">sort_unstable</span>();
 
     <span class="kw">let</span> <span class="ident">diffs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ids</span>
         .<span class="ident">windows</span>(<span class="number">2</span>)
         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">slice</span><span class="op">|</span> (<span class="ident">slice</span>[<span class="number">1</span>] <span class="op">-</span> <span class="ident">slice</span>[<span class="number">0</span>]))
         .<span class="ident">enumerate</span>()
-        .<span class="ident">filter</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="ident">diff</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">diff</span> <span class="op">&gt;</span> <span class="number">1</span>)
+        .<span class="ident">filter</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">diff</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">diff</span> <span class="op">&gt;</span> <span class="number">1</span>)
         .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">idx</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">ids</span>[<span class="ident">idx</span>] <span class="op">+</span> <span class="number">1</span>)
         .<span class="ident">collect</span>();
 

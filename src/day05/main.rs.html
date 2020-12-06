@@ -189,6 +189,9 @@
 <span id="186">186</span>
 <span id="187">187</span>
 <span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day05&quot;</span>]</span>
 
@@ -213,8 +216,9 @@
 <span class="doccomment">//! B keeps rows 44 through 47.</span>
 <span class="doccomment">//! F keeps rows 44 through 45.</span>
 <span class="doccomment">//! The final F keeps the lower of the two, row 44.</span>
-<span class="doccomment">//! The last three characters will be either L or R; these specify exactly one of the 8 columns of seats on the plane (numbered 0 through 7). The same process as above proceeds again, this time with only three steps. L means to keep the lower half, while R means to keep the upper half.</span>
 <span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The last three characters will be either L or R; these specify exactly one of the 8 columns of seats on the plane (numbered 0 through 7). The same process as above proceeds again, this time with only three steps. L means to keep the lower half, while R means to keep the upper half.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! For example, consider just the last 3 characters of FBFBBFFRLR:</span>
 <span class="doccomment">//!</span>
@@ -238,6 +242,8 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! As a sanity check, look through your list of boarding passes. What is the highest seat ID on a boarding pass?</span>
 <span class="doccomment">//!</span>
+<span class="doccomment">//! Your puzzle answer was 998.</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! ## --- Part Two ---</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Ding! The &quot;fasten seat belt&quot; signs have turned on. Time to find your seat.</span>
@@ -248,7 +254,7 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! What is the ID of your seat?</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//!</span>
+<span class="doccomment">//! Your puzzle answer was 676.</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>;

@@ -174,6 +174,16 @@
 <span id="171">171</span>
 <span id="172">172</span>
 <span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day04&quot;</span>]</span>
 
@@ -228,6 +238,8 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Count the number of valid passports - those that have all required fields. Treat cid as optional. In your batch file, how many passports are valid?</span>
 <span class="doccomment">//!</span>
+<span class="doccomment">//! Your puzzle answer was 247.</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! ## --- Part Two ---</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The line is moving more quickly now, but you overhear airport security talking about how passports with invalid data are getting through. Better add some data validation, quick!</span>
@@ -250,25 +262,28 @@
 <span class="doccomment">//! Your job is to count the passports where all required fields are both present and valid according to the above rules. Here are some example values:</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```</span>
-<span class="doccomment">//! byr valid:   2002</span>
+<span class="doccomment">//! byr valid: 2002</span>
 <span class="doccomment">//! byr invalid: 2003</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! hgt valid:   60in</span>
-<span class="doccomment">//! hgt valid:   190cm</span>
+<span class="doccomment">//! hgt valid: 60in</span>
+<span class="doccomment">//! hgt valid: 190cm</span>
 <span class="doccomment">//! hgt invalid: 190in</span>
 <span class="doccomment">//! hgt invalid: 190</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! hcl valid:   #123abc</span>
+<span class="doccomment">//! hcl valid: #123abc</span>
 <span class="doccomment">//! hcl invalid: #123abz</span>
 <span class="doccomment">//! hcl invalid: 123abc</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! ecl valid:   brn</span>
+<span class="doccomment">//! ecl valid: brn</span>
 <span class="doccomment">//! ecl invalid: wat</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! pid valid:   000000001</span>
+<span class="doccomment">//! pid valid: 000000001</span>
 <span class="doccomment">//! pid invalid: 0123456789</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! Here are some invalid passports:</span>
 <span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
 <span class="doccomment">//! eyr:1972 cid:100</span>
 <span class="doccomment">//! hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926</span>
 <span class="doccomment">//!</span>
@@ -282,8 +297,11 @@
 <span class="doccomment">//! hgt:59cm ecl:zzz</span>
 <span class="doccomment">//! eyr:2038 hcl:74454a iyr:2023</span>
 <span class="doccomment">//! pid:3556412378 byr:2007</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! Here are some valid passports:</span>
 <span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
 <span class="doccomment">//! pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980</span>
 <span class="doccomment">//! hcl:#623a2f</span>
 <span class="doccomment">//!</span>
@@ -299,6 +317,8 @@
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Count the number of valid passports - those that have all required fields and valid values. Continue to treat cid as optional. In your batch file, how many passports are valid?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Your puzzle answer was 145.</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>;

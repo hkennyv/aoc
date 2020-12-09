@@ -101,7 +101,7 @@ fn part1(input: &str) -> i32 {
         bags = update_bags(&rules, &bags);
         has_golden.extend(bags.clone());
 
-        if bags.len() == 0 {
+        if bags.is_empty() {
             break;
         }
     }
@@ -130,16 +130,10 @@ fn update_bags(rules: &[(String, HashSet<String>)], bags: &HashSet<String>) -> H
     let has_bags: HashSet<String> = rules
         .iter()
         .filter(|(_, inside_bags)| {
-            if inside_bags
+            !inside_bags
                 .intersection(bags)
                 .collect::<HashSet<&String>>()
-                .len()
-                == 0
-            {
-                false
-            } else {
-                true
-            }
+                .is_empty()
         })
         .map(|(bag, _)| bag.to_string())
         .collect();

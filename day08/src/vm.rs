@@ -22,6 +22,8 @@ pub struct VM {
 }
 
 impl VM {
+    /// Creates a new VM instance given a vector of instructions. It
+    /// initializes the acc, idx to 0 with an empty has_run set.
     pub fn new(instructions: Vec<Instruction>) -> VM {
         VM {
             acc: 0,
@@ -31,6 +33,8 @@ impl VM {
         }
     }
 
+    /// Runs the VM. It will terminate once an instruction that has already
+    /// run is reached
     pub fn run(&mut self) -> i32 {
         loop {
             if self.has_run.contains(&self.idx) {
@@ -44,6 +48,7 @@ impl VM {
         self.acc
     }
 
+    /// Executes a single instruction operation with its respective argument
     fn execute_instruction(&mut self, instruction: &Instruction) {
         // mark the execution as run
         self.has_run.insert(self.idx);
@@ -62,6 +67,8 @@ impl VM {
         }
     }
 
+    /// Attempts to change the nop and jmp instructions until it finds a
+    /// vector of instructions that successfully terminates
     pub fn fix_instructions(&mut self) -> i32 {
         let nop_and_jmps: Vec<usize> = self
             .instructions

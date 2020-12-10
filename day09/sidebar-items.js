@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["main",""],["parse_input","parses the input from a String to a Vec"]]});
+initSidebarItems({"fn":[["main",""],["parse_input","parses the input from a String to a Vec"],["part1",""]]});

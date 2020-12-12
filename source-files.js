@@ -11,6 +11,7 @@ sourcesIndex["day07"] = {"name":"","files":["main.rs"]};
 sourcesIndex["day08"] = {"name":"","files":["main.rs","vm.rs"]};
 sourcesIndex["day09"] = {"name":"","files":["main.rs"]};
 sourcesIndex["day10"] = {"name":"","files":["main.rs"]};
+sourcesIndex["day11"] = {"name":"","files":["main.rs"]};
 sourcesIndex["lazy_static"] = {"name":"","files":["inline_lazy.rs","lib.rs"]};
 sourcesIndex["memchr"] = {"name":"","dirs":[{"name":"x86","files":["avx.rs","mod.rs","sse2.rs"]}],"files":["fallback.rs","iter.rs","lib.rs","naive.rs"]};
 sourcesIndex["regex"] = {"name":"","dirs":[{"name":"literal","files":["imp.rs","mod.rs"]}],"files":["backtrack.rs","cache.rs","compile.rs","dfa.rs","error.rs","exec.rs","expand.rs","find_byte.rs","freqs.rs","input.rs","lib.rs","pikevm.rs","prog.rs","re_builder.rs","re_bytes.rs","re_set.rs","re_trait.rs","re_unicode.rs","sparse.rs","utf8.rs"]};

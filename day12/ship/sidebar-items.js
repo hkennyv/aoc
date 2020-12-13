@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Ship","the `Ship` model. the orientation is in +degrees and the location is based on a cartesian coordinate system where E is (1, 0) and N is (0, 1)"]]});

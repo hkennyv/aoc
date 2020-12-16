@@ -36,6 +36,10 @@ fn part1(input: &str) -> u64 {
     sys.get_sum()
 }
 
+fn part2(input: &str) -> u64 {
+    0
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -46,5 +50,13 @@ mod tests {
         let res_p1 = part1(&contents);
 
         assert_eq!(res_p1, 165);
+    }
+
+    #[test]
+    fn test_sample_p2() {
+        let contents = fs::read_to_string("sample.txt").unwrap();
+        let res_p2 = part2(&contents);
+
+        assert_eq!(res_p2, 208);
     }
 }

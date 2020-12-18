@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::collections::HashSet;
-use std::iter::FromIterator;
 
 pub struct DockSystem {
     mask: String,

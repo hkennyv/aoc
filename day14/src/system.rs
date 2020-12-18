@@ -33,9 +33,11 @@ impl DockSystem {
     }
 
     pub fn update_memory2(&mut self, address: u64, value: u64) {
-        let (and_mask, or_mask, floating_mask) = DockSystem::get_masks(&self.mask);
+        let addresses = DockSystem::get_addresses(address, &self.mask);
 
-        let addresses = DockSystem::get_addresses(address, and_mask, or_mask, floating_mask);
+        for address in addresses {
+            self.memory.insert(address, value);
+        }
     }
 
     pub fn get_sum(&self) -> u64 {
@@ -59,18 +61,38 @@ impl DockSystem {
         (!and_mask, or_mask, floating_mask)
     }
 
-    fn get_addresses(address: u64, and_mask: u64, or_mask: u64, floating_mask: u64) -> Vec<u64> {
-        let mut res = Vec::new();
+    fn get_addresses(address: u64, mask: &str) -> Vec<u64> {
+        let address_string: String = format!("{:036b}", address)
+            .chars()
+            .zip(mask.chars())
+            .map(|(ac, mc)| match mc {
+                '0' => ac,
+                '1' => '1',
+                'X' => 'X',
+                _ => mc,
+            })
+            .collect();
 
-        // apply the 1's and 0's mask
-        let mut modified_address = address;
-        modified_address &= and_mask;
-        modified_address |= or_mask;
+        let combinations = DockSystem::combinations(&address_string);
 
-        // apply the floating mask to get all the permutations of the address
+        combinations
+            .iter()
+            .map(|s| u64::from_str_radix(s, 2).unwrap())
+            .collect()
+    }
 
-        println!("{:?}", res);
-        res
+    fn combinations(address: &str) -> Vec<String> {
+        if address.contains('X') {
+            vec![
+                DockSystem::combinations(&address.replacen("X", "0", 1)),
+                DockSystem::combinations(&address.replacen("X", "1", 1)),
+            ]
+            .into_iter()
+            .flatten()
+            .collect()
+        } else {
+            vec![address.to_owned()]
+        }
     }
 }
 
@@ -92,29 +114,6 @@ mod tests {
 
             assert_eq!(res.0, and_mask);
             assert_eq!(res.1, or_mask);
-        }
-    }
-
-    #[test]
-    fn test_get_addresses() {
-        let tests: Vec<(u64, u64, u64, u64)> = vec![
-            (42, 0b1100, 0b10010, 0b100001),
-            (26, 0b1110100, 0b000000, 0b1011),
-        ];
-
-        let answers: Vec<HashSet<u64>> = vec![
-            HashSet::from_iter(vec![26, 27, 58, 59]),
-            HashSet::from_iter(vec![16, 17, 18, 19, 24, 25, 26, 27]),
-        ];
-
-        for (i, (address, and_mask, or_mask, float_mask)) in tests.iter().enumerate() {
-            let answer = &answers[i];
-            let res = DockSystem::get_addresses(*address, *and_mask, *or_mask, *float_mask);
-            assert_eq!(res.len(), answer.len());
-
-            for num in answer {
-                assert_eq!(answer.contains(num), true);
-            }
         }
     }
 }

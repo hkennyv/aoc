@@ -75,6 +75,7 @@ fn main() {
     println!("res p2: {}", res_p2);
 }
 
+/// parses the input into a vector of i32's
 fn parse_input(filename: &str) -> Vec<i32> {
     fs::read_to_string(filename)
         .unwrap()
@@ -83,7 +84,11 @@ fn parse_input(filename: &str) -> Vec<i32> {
         .collect()
 }
 
-fn part1(nums: &[i32], max_turn: i32) -> i32 {
+#[allow(dead_code)]
+/// a hashmap implementation of the memory game. this is slower but more
+/// memory efficient than preallocating a vector/array and using that as a
+/// cache. it requires costly hash calculations
+fn part1_old(nums: &[i32], max_turn: i32) -> i32 {
     let mut map: HashMap<i32, i32> = HashMap::new();
     let mut last = 0;
 
@@ -105,6 +110,33 @@ fn part1(nums: &[i32], max_turn: i32) -> i32 {
         };
 
         map.insert(last, turn - 1);
+        last = current;
+    }
+
+    last
+}
+
+/// a preallocated vector implementation of the memory game. this one uses
+/// up more memory since it preallocates 4x max_turn as a cache, however it
+/// doesn't require costly hash calculations
+fn part1(nums: &[i32], max_turn: i32) -> i32 {
+    let mut cache = vec![0; max_turn as usize];
+    let mut last = 0;
+
+    // add starting numbers to cache
+    for (i, num) in nums.iter().copied().enumerate() {
+        cache[num as usize] = i + 1;
+        last = num;
+    }
+
+    // calculate num for each of the next turns until max_turn
+    for i in nums.len()..(max_turn as usize) {
+        let current = match cache[last as usize] {
+            0 => 0,
+            turn => (i - turn) as i32,
+        };
+
+        cache[last as usize] = i;
         last = current;
     }
 
@@ -133,7 +165,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn test_sample_p2() {
         let inputs: Vec<(Vec<i32>, i32)> = vec![
             (vec![0, 3, 6], 175594),

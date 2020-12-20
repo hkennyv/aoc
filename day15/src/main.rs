@@ -84,36 +84,28 @@ fn parse_input(filename: &str) -> Vec<i32> {
 }
 
 fn part1(nums: &[i32], max_turn: i32) -> i32 {
-    let mut map: HashMap<i32, Vec<i32>> = HashMap::new();
+    let mut map: HashMap<i32, i32> = HashMap::new();
     let mut last = 0;
 
     // iterate over starting numbers
     for (i, &num) in nums.iter().enumerate() {
         let turn = i as i32;
 
-        let entry = map.entry(num).or_insert_with(|| vec![]);
-        entry.push(turn);
-
+        let entry = map.entry(num).or_insert(0);
+        *entry = turn;
         last = num;
     }
 
-    // calulate turns up until max_turn
+    // calculate the number for each turn until max_turn
     for i in nums.len()..(max_turn as usize) {
         let turn = i as i32;
+        let current = match map.get(&last) {
+            Some(num) => turn - 1 - num,
+            None => 0,
+        };
 
-        let turns = map.get_mut(&last).unwrap();
-
-        if turns.len() > 1 {
-            let current = turns[turns.len() - 1] - turns[turns.len() - 2];
-            let entry = map.entry(current).or_insert_with(|| vec![]);
-            entry.push(turn);
-
-            last = current;
-        } else {
-            last = 0;
-            let entry = map.entry(last).or_insert_with(|| vec![]);
-            entry.push(turn);
-        }
+        map.insert(last, turn - 1);
+        last = current;
     }
 
     last

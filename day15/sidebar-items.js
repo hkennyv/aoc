@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["main",""],["parse_input",""],["part1",""]]});
+initSidebarItems({"fn":[["main",""],["parse_input","parses the input into a vector of i32's"],["part1","a preallocated vector implementation of the memory game. this one uses up more memory since it preallocates 4x max_turn as a cache, however it doesn't require costly hash calculations"],["part1_old","a hashmap implementation of the memory game. this is slower but more memory efficient than preallocating a vector/array and using that as a cache. it requires costly hash calculations"]]});

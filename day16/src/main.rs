@@ -134,6 +134,7 @@ fn part2(rules: &Rules, my_ticket: &[i32], nearby_tickets: &[Vec<i32>]) -> i32 {
         .collect();
 
     print_matrix(&matrix);
+    println!("\n");
     solve_matrix(&mut matrix);
     print_matrix(&matrix);
 
@@ -158,7 +159,7 @@ fn print_matrix(matrix: &[(&str, HashSet<usize>)]) {
     }
 }
 
-fn solve_matrix(matrix: &mut [(&str, HashSet<usize>)]) {
+fn solve_matrix(matrix: &mut Vec<(&str, HashSet<usize>)>) {
     let mut finished: HashSet<&str> = HashSet::new();
     let mut i = 0;
 
@@ -168,19 +169,15 @@ fn solve_matrix(matrix: &mut [(&str, HashSet<usize>)]) {
             break;
         }
 
-        println!("{}", matrix[i % matrix.len()].0);
-
         // find rules that that only has single item in it
         let len = matrix.len();
-        // let rule = &mut matrix[i % matrix.len()];
 
         // remove that rule's idx from all the other ones
         if matrix[i % matrix.len()].1.len() == 1 {
-            // if rule.1.len() == 1 {
             let idx = *matrix[i % matrix.len()].1.iter().next().unwrap();
 
             for j in 0..len {
-                if j == i {
+                if j == (i % matrix.len()) {
                     continue;
                 }
 
@@ -188,8 +185,7 @@ fn solve_matrix(matrix: &mut [(&str, HashSet<usize>)]) {
             }
 
             finished.insert(matrix[i % matrix.len()].0);
-            // println!("\n\n");
-            // print_matrix(&matrix);
+            i += 1;
         } else {
             i += 1;
         }

@@ -226,10 +226,6 @@
 <span id="223">223</span>
 <span id="224">224</span>
 <span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day16&quot;</span>]</span>
 
@@ -367,6 +363,7 @@
         .<span class="ident">collect</span>();
 
     <span class="ident">print_matrix</span>(<span class="kw-2">&amp;</span><span class="ident">matrix</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;\n&quot;</span>);
     <span class="ident">solve_matrix</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">matrix</span>);
     <span class="ident">print_matrix</span>(<span class="kw-2">&amp;</span><span class="ident">matrix</span>);
 
@@ -391,7 +388,7 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">solve_matrix</span>(<span class="ident">matrix</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>)]) {
+<span class="kw">fn</span> <span class="ident">solve_matrix</span>(<span class="ident">matrix</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>)<span class="op">&gt;</span>) {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">finished</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">HashSet</span>::<span class="ident">new</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
 
@@ -401,19 +398,15 @@
             <span class="kw">break</span>;
         }
 
-        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">matrix</span>[<span class="ident">i</span> <span class="op">%</span> <span class="ident">matrix</span>.<span class="ident">len</span>()].<span class="number">0</span>);
-
         <span class="comment">// find rules that that only has single item in it</span>
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">matrix</span>.<span class="ident">len</span>();
-        <span class="comment">// let rule = &amp;mut matrix[i % matrix.len()];</span>
 
         <span class="comment">// remove that rule&#39;s idx from all the other ones</span>
         <span class="kw">if</span> <span class="ident">matrix</span>[<span class="ident">i</span> <span class="op">%</span> <span class="ident">matrix</span>.<span class="ident">len</span>()].<span class="number">1</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="number">1</span> {
-            <span class="comment">// if rule.1.len() == 1 {</span>
             <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">matrix</span>[<span class="ident">i</span> <span class="op">%</span> <span class="ident">matrix</span>.<span class="ident">len</span>()].<span class="number">1</span>.<span class="ident">iter</span>().<span class="ident">next</span>().<span class="ident">unwrap</span>();
 
             <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">len</span> {
-                <span class="kw">if</span> <span class="ident">j</span> <span class="op">=</span><span class="op">=</span> <span class="ident">i</span> {
+                <span class="kw">if</span> <span class="ident">j</span> <span class="op">=</span><span class="op">=</span> (<span class="ident">i</span> <span class="op">%</span> <span class="ident">matrix</span>.<span class="ident">len</span>()) {
                     <span class="kw">continue</span>;
                 }
 
@@ -421,8 +414,7 @@
             }
 
             <span class="ident">finished</span>.<span class="ident">insert</span>(<span class="ident">matrix</span>[<span class="ident">i</span> <span class="op">%</span> <span class="ident">matrix</span>.<span class="ident">len</span>()].<span class="number">0</span>);
-            <span class="comment">// println!(&quot;\n\n&quot;);</span>
-            <span class="comment">// print_matrix(&amp;matrix);</span>
+            <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         } <span class="kw">else</span> {
             <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         }

@@ -23,7 +23,6 @@ fn parse_input(filename: &str) -> (Rules, Vec<i32>, Vec<Vec<i32>>) {
 
     // populate rules
     let rules: Rules = (split[0].split("\r\n").map(|line| {
-
         let mut spl = line.split(':');
         let name = spl.next().unwrap().to_string();
         let nums: ((i32, i32), (i32, i32)) = {

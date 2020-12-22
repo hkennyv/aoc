@@ -114,6 +114,8 @@
 <span id="111">111</span>
 <span id="112">112</span>
 <span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day13&quot;</span>]</span>
 
@@ -187,6 +189,7 @@
     (<span class="ident">num</span> <span class="op">/</span> <span class="ident">multiplier</span>) <span class="op">*</span> (<span class="ident">num</span> <span class="op">-</span> <span class="ident">early_time</span>)
 }
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
 <span class="kw">fn</span> <span class="ident">part2</span>(<span class="ident">ids</span>: <span class="kw-2">&amp;</span>[<span class="ident">i64</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i64</span> {
     <span class="number">0</span>
 }
@@ -205,6 +208,7 @@
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="attribute">#[<span class="ident">ignore</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_sample_p2</span>() {
         <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">fs</span>::<span class="ident">read_to_string</span>(<span class="string">&quot;sample.txt&quot;</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> (<span class="kw">_</span>, <span class="kw-2">mut</span> <span class="ident">bus_ids</span>) <span class="op">=</span> <span class="ident">parse_input</span>(<span class="kw-2">&amp;</span><span class="ident">content</span>);

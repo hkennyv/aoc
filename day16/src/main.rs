@@ -3,7 +3,6 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs;
-use std::iter::FromIterator;
 
 type Rule = ((i32, i32), (i32, i32));
 type Rules = HashMap<String, Rule>;
@@ -20,10 +19,11 @@ fn main() {
 
 fn parse_input(filename: &str) -> (Rules, Vec<i32>, Vec<Vec<i32>>) {
     let contents = fs::read_to_string(filename).unwrap();
-    let split: Vec<String> = contents.split("\n\n").map(|s| s.to_string()).collect();
+    let split: Vec<String> = contents.split("\r\n\r\n").map(|s| s.to_string()).collect();
 
     // populate rules
-    let rules: Rules = (split[0].split('\n').map(|line| {
+    let rules: Rules = (split[0].split("\r\n").map(|line| {
+
         let mut spl = line.split(':');
         let name = spl.next().unwrap().to_string();
         let nums: ((i32, i32), (i32, i32)) = {
@@ -53,7 +53,7 @@ fn parse_input(filename: &str) -> (Rules, Vec<i32>, Vec<Vec<i32>>) {
         .skip(1)
         .map(|line| {
             line.split(',')
-                .map(|n| n.parse::<i32>().unwrap())
+                .map(|n| n.strip_suffix('\r').unwrap_or(n).parse::<i32>().unwrap())
                 .collect::<Vec<i32>>()
         })
         .collect();
@@ -63,7 +63,6 @@ fn parse_input(filename: &str) -> (Rules, Vec<i32>, Vec<Vec<i32>>) {
 
 fn part1(rules: &Rules, nearby_tickets: &[Vec<i32>]) -> i32 {
     let mut invalid = 0;
-    let mut count = 0;
 
     for ticket in nearby_tickets {
         for num in ticket {
@@ -75,7 +74,6 @@ fn part1(rules: &Rules, nearby_tickets: &[Vec<i32>]) -> i32 {
             }
 
             if !is_valid {
-                count += 1;
                 invalid += num;
             }
         }
@@ -84,33 +82,11 @@ fn part1(rules: &Rules, nearby_tickets: &[Vec<i32>]) -> i32 {
     invalid
 }
 
-fn part2(rules: &Rules, my_ticket: &[i32], nearby_tickets: &[Vec<i32>]) -> i32 {
+fn part2(rules: &Rules, my_ticket: &[i32], nearby_tickets: &[Vec<i32>]) -> u64 {
     let valid_tickets: Vec<&Vec<i32>> = nearby_tickets
         .iter()
         .filter(|&ticket| ticket_is_valid(rules, ticket))
         .collect();
-
-    // let rule_matrix: Vec<Vec<bool>> = nearby_tickets
-    //     .iter()
-    //     .map(|ticket| {
-    //         ticket
-    //             .iter()
-    //             .map(|num| {
-    //                 let mut is_valid = false;
-    //                 for rule in rules.values() {
-    //                     if ticket_num_is_valid(rule, *num) {
-    //                         is_valid = true;
-    //                     }
-    //                 }
-
-    //                 is_valid
-    //             })
-    //             .collect()
-    //     })
-    //     .collect();
-
-    // println!("{:?}", rules.keys());
-    // println!("{:?}", rule_matrix);
 
     let mut matrix: Vec<(&str, HashSet<usize>)> = rules
         .iter()
@@ -138,12 +114,20 @@ fn part2(rules: &Rules, my_ticket: &[i32], nearby_tickets: &[Vec<i32>]) -> i32 {
     solve_matrix(&mut matrix);
     print_matrix(&matrix);
 
-    // println!("{:?}", matrix);
+    let mut res: Vec<u64> = Vec::new();
+    for (name, set) in &matrix {
+        let num = *set.iter().next().unwrap();
 
-    0
+        if name.starts_with("departure") {
+            res.push(my_ticket[num] as u64);
+        }
+    }
+
+    res.iter().product()
 }
 
 fn print_matrix(matrix: &[(&str, HashSet<usize>)]) {
+    println!("\n");
     for (name, vals) in matrix {
         let mut line = format!("{:<20}| ", name);
 

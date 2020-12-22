@@ -209,7 +209,6 @@
 <span id="206">206</span>
 <span id="207">207</span>
 <span id="208">208</span>
-<span id="209">209</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day16&quot;</span>]</span>
 
@@ -236,7 +235,6 @@
 
     <span class="comment">// populate rules</span>
     <span class="kw">let</span> <span class="ident">rules</span>: <span class="ident">Rules</span> <span class="op">=</span> (<span class="ident">split</span>[<span class="number">0</span>].<span class="ident">split</span>(<span class="string">&quot;\r\n&quot;</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">line</span><span class="op">|</span> {
-
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">spl</span> <span class="op">=</span> <span class="ident">line</span>.<span class="ident">split</span>(<span class="string">&#39;:&#39;</span>);
         <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">spl</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>().<span class="ident">to_string</span>();
         <span class="kw">let</span> <span class="ident">nums</span>: ((<span class="ident">i32</span>, <span class="ident">i32</span>), (<span class="ident">i32</span>, <span class="ident">i32</span>)) <span class="op">=</span> {

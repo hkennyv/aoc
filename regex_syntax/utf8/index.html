@@ -13,7 +13,7 @@ whether a particular byte sequence was a Cyrillic character. One possible
 scalar value range is <code>[0400-04FF]</code>. The set of allowed bytes for this
 range can be expressed as a sequence of byte ranges:</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="ident">D0</span><span class="op">-</span><span class="ident">D3</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]</pre></div>
 <p>This is simple enough: simply encode the boundaries, <code>0400</code> encodes to
 <code>D0 80</code> and <code>04FF</code> encodes to <code>D3 BF</code>, and create ranges from each
@@ -26,14 +26,14 @@ this isn't quite correct because this range doesn't capture many characters,
 for example, <code>04FF</code> (because its last byte, <code>BF</code> isn't in the range <code>80-AF</code>).</p>
 <p>Instead, you need multiple sequences of byte ranges:</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="ident">D0</span><span class="op">-</span><span class="ident">D3</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]  # <span class="ident">matches</span> <span class="ident">codepoints</span> <span class="number">0400</span><span class="op">-</span><span class="number">04FF</span>
 [<span class="ident">D4</span>][<span class="number">80</span><span class="op">-</span><span class="ident">AF</span>]     # <span class="ident">matches</span> <span class="ident">codepoints</span> <span class="number">0500</span><span class="op">-</span><span class="number">052F</span></pre></div>
 <p>This gets even more complicated if you want bigger ranges, particularly if
 they naively contain surrogate codepoints. For example, the sequence of byte
 ranges for the basic multilingual plane (<code>[0000-FFFF]</code>) look like this:</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="number">0</span><span class="op">-</span><span class="number">7F</span>]
 [<span class="ident">C2</span><span class="op">-</span><span class="ident">DF</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]
 [<span class="ident">E0</span>][<span class="ident">A0</span><span class="op">-</span><span class="ident">BF</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]
@@ -44,7 +44,7 @@ ranges for the basic multilingual plane (<code>[0000-FFFF]</code>) look like thi
 UTF-8, including encodings of surrogate codepoints.</p>
 <p>And, of course, for all of Unicode (<code>[000000-10FFFF]</code>):</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="number">0</span><span class="op">-</span><span class="number">7F</span>]
 [<span class="ident">C2</span><span class="op">-</span><span class="ident">DF</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]
 [<span class="ident">E0</span>][<span class="ident">A0</span><span class="op">-</span><span class="ident">BF</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]

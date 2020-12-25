@@ -23,11 +23,11 @@ sequence <code>\xDD\x61</code> would not match because <code>0x61 &lt; 0x80</cod
 </div><h4 id="method.reverse" class="method"><code>pub fn <a href="#method.reverse" class="fnname">reverse</a>(&amp;mut self)</code><a class="srclink" href="../../src/regex_syntax/utf8.rs.html#171-178" title="goto source code">[src]</a></h4><div class="docblock"><p>Reverses the ranges in this sequence.</p>
 <p>For example, if this corresponds to the following sequence:</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="ident">D0</span><span class="op">-</span><span class="ident">D3</span>][<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>]</pre></div>
 <p>Then after reversal, it will be</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="number">80</span><span class="op">-</span><span class="ident">BF</span>][<span class="ident">D0</span><span class="op">-</span><span class="ident">D3</span>]</pre></div>
 <p>This is useful when one is constructing a UTF-8 automaton to match
 character classes in reverse.</p>

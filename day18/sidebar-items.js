@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["main",""]]});
+initSidebarItems({"enum":[["Token",""]],"fn":[["evaluate_expression","evaluates the expression using a shunting-yard algorithm"],["main",""],["parse_input",""],["part1",""],["solve_reverse_polish",""]]});

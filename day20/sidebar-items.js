@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["main",""],["parse_input","parses the input file into a HashMap<i32, Tile> where the id is the the key and the `Tile` type is the value"],["part1",""]],"mod":[["tile",""]]});

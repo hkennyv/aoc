@@ -5,7 +5,7 @@ use std::fs;
 
 #[derive(Debug, PartialEq, Eq, Hash)]
 enum Token {
-    Num(u32),
+    Num(i32),
     LeftP,
     Add,
     Mul,
@@ -52,6 +52,7 @@ fn evaluate_expression(expression: &str, precedance: &HashMap<Token, i32>) -> i3
                     match operator_stack.pop() {
                         Some(top) => {
                             let top_p = precedance.get(&top).unwrap();
+
                             if top_p < p {
                                 output_queue.push_back(top);
                             } else {
@@ -60,7 +61,10 @@ fn evaluate_expression(expression: &str, precedance: &HashMap<Token, i32>) -> i3
                                 break;
                             }
                         }
-                        None => break,
+                        None => {
+                            operator_stack.push(Token::Add);
+                            break;
+                        }
                     }
                 }
             }
@@ -79,7 +83,10 @@ fn evaluate_expression(expression: &str, precedance: &HashMap<Token, i32>) -> i3
                                 break;
                             }
                         }
-                        None => break,
+                        None => {
+                            operator_stack.push(Token::Mul);
+                            break;
+                        }
                     }
                 }
             }
@@ -91,7 +98,7 @@ fn evaluate_expression(expression: &str, precedance: &HashMap<Token, i32>) -> i3
                     None => break,
                 }
             },
-            n => output_queue.push_back(Token::Num(n.to_digit(10).unwrap())),
+            n => output_queue.push_back(Token::Num(n.to_digit(10).unwrap() as i32)),
         }
     }
 
@@ -103,13 +110,42 @@ fn evaluate_expression(expression: &str, precedance: &HashMap<Token, i32>) -> i3
         }
     }
 
-    println!("output_queue: {:?}", output_queue);
+    println!("{:?}", output_queue);
 
     solve_reverse_polish(&mut output_queue)
 }
 
 fn solve_reverse_polish(deque: &mut VecDeque<Token>) -> i32 {
-    0
+    let mut stack: Vec<i32> = vec![];
+
+    println!("deque: {:?}", deque);
+
+    loop {
+        match deque.pop_front() {
+            Some(Token::Add) => {
+                let lh = stack.pop().unwrap();
+                let rh = stack.pop().unwrap();
+                let sum = lh + rh;
+                println!("{} + {}", lh, rh);
+                stack.push(sum);
+            }
+            Some(Token::Mul) => {
+                let lh = stack.pop().unwrap();
+                let rh = stack.pop().unwrap();
+                let product = lh * rh;
+                println!("{} * {}", lh, rh);
+                stack.push(product);
+            }
+            Some(Token::Num(num)) => stack.push(num),
+            None | _ => {}
+        }
+
+        println!("stack: {:?}", stack);
+
+        if deque.len() == 0 && stack.len() == 1 {
+            return stack[0];
+        }
+    }
 }
 
 #[cfg(test)]
@@ -127,6 +163,7 @@ mod tests {
         let pairs = vec![
             ("1 + 1 + 1", 3),
             ("2 * 2 * 1", 4),
+            ("1 + 4 * 2", 10),
             ("2 * 2 * 1 + 1", 5),
             ("2 * 3 + (4 * 5)", 26),
             ("5 + (8 * 3 + 9 + 3 * 4 * 3)", 437),

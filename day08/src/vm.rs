@@ -1,4 +1,4 @@
-#![allow(clippy::upper_case_acronyms)]
+#![allow(clippy::all)]
 
 use std::collections::HashSet;
 

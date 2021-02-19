@@ -1,5 +1,6 @@
 #![crate_name = "day20"]
 #![allow(clippy::all)]
+#![allow(dead_code, unused_variables, unused_mut)]
 
 use std::collections::HashMap;
 use std::fs;
@@ -52,6 +53,7 @@ fn part1(tilemap: &HashMap<i32, Tile>) -> i64 {
 mod tests {
     use super::*;
 
+    #[ignore]
     #[test]
     fn test_sample_p1() {
         let input = parse_input("sample.txt");

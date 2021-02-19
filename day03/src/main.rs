@@ -104,13 +104,13 @@ fn count_trees_p1(forest: &[Vec<char>]) -> i32 {
 
 /// performs the tree counting for part2
 fn count_trees_p2(forest: &[Vec<char>]) -> i64 {
-    let mut res: Vec<i64> = Vec::new();
-
-    res.push(count_trees(forest, 1, 1).into());
-    res.push(count_trees(forest, 3, 1).into());
-    res.push(count_trees(forest, 5, 1).into());
-    res.push(count_trees(forest, 7, 1).into());
-    res.push(count_trees(forest, 1, 2).into());
+    let res = vec![
+        count_trees(forest, 1, 1).into(),
+        count_trees(forest, 3, 1).into(),
+        count_trees(forest, 5, 1).into(),
+        count_trees(forest, 7, 1).into(),
+        count_trees(forest, 1, 2).into(),
+    ];
 
     res.iter().product()
 }

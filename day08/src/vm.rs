@@ -1,3 +1,5 @@
+#![allow(clippy::upper_case_acronyms)]
+
 use std::collections::HashSet;
 
 #[derive(Copy, Clone, Debug, PartialEq)]

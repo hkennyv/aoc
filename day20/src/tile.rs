@@ -9,9 +9,7 @@ fn rotate_tile(tile: &Tile) -> Tile {
     let mut rotated = vec![vec!['.'; new_width]; new_length];
 
     for i in 0..new_length {
-        for j in 0..new_width {
-            
-        }
+        for j in 0..new_width {}
     }
 
     rotated

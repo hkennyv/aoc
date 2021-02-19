@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Token",""]],"fn":[["evaluate_expression","evaluates the expression using a shunting-yard algorithm"],["main",""],["parse_input",""],["part1",""],["solve_reverse_polish",""]]});
+initSidebarItems({"enum":[["Token",""]],"fn":[["main",""],["make_reverse_polish",""],["parse_input",""],["part1","evaluates the expression using a shunting-yard algorithm"],["part2","evaluates the expression using a shunting-yard algorithm"],["solve_reverse_polish",""]]});

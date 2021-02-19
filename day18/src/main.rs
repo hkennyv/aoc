@@ -193,11 +193,8 @@ fn make_reverse_polish(expression: &str, precedance: &HashMap<Token, u64>) -> Ve
         }
     }
 
-    loop {
-        match stack.pop() {
-            Some(op) => output.push_back(op),
-            None => break,
-        }
+    while let Some(op) = stack.pop() {
+        output.push_back(op);
     }
 
     output
@@ -221,10 +218,10 @@ fn solve_reverse_polish(output: &mut VecDeque<Token>) -> u64 {
                 stack.push(product);
             }
             Some(Token::Num(num)) => stack.push(num as u64),
-            None | _ => {}
+            _ => {}
         }
 
-        if output.len() == 0 && stack.len() == 1 {
+        if output.is_empty() && stack.len() == 1 {
             return stack[0];
         }
     }

@@ -64,8 +64,6 @@ fn parse_input(filename: &str) -> (HashMap<usize, Rule>, Vec<String>) {
 /// We want to evaluate rule 0 and see which messages match the evaluated
 /// character sequence.
 fn part1(rules: &HashMap<usize, Rule>, messages: &[String]) -> usize {
-    println!("{:#?}", rules);
-
     let rule = rules.get(&0).unwrap();
 
     let mut rgx = match rule {
@@ -85,8 +83,6 @@ fn part1(rules: &HashMap<usize, Rule>, messages: &[String]) -> usize {
             count += 1;
         }
     }
-
-    dbg!(rgx);
 
     count
 }

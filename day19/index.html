@@ -1,7 +1,128 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `day19` crate."><meta name="keywords" content="rust, rustlang, rust-lang, day19"><title>day19 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="— Day 19: Monster Messages —"><meta name="keywords" content="rust, rustlang, rust-lang, day19"><title>day19 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../day19/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Crate day19</p><div class="block version"><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all day19's items</p></a><div class="block items"><ul><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li></ul></div><p class="location"></p><div id="sidebar-vars" data-name="day19" data-ty="mod" data-relpath="../"></div></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="">day19</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/day19/main.rs.html#1-243" title="goto source code">[src]</a></span></h1><h2 id="enums" class="section-header"><a href="#enums">Enums</a></h2>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="">day19</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/day19/main.rs.html#1-396" title="goto source code">[src]</a></span></h1><div class="docblock"><h2 id="-day-19-monster-messages-" class="section-header"><a href="#-day-19-monster-messages-">— Day 19: Monster Messages —</a></h2>
+<p>You land in an airport surrounded by dense forest. As you walk to your high-speed train, the Elves at the Mythical Information Bureau contact you again. They think their satellite has collected an image of a sea monster! Unfortunately, the connection to the satellite is having problems, and many of the messages sent back from the satellite have been corrupted.</p>
+<p>They sent you a list of the rules valid messages should obey and a list of received messages they’ve collected so far (your puzzle input).</p>
+<p>The rules for valid messages (the top part of your puzzle input) are numbered and build upon each other. For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="number">0</span>: <span class="number">1</span> <span class="number">2</span>
+<span class="number">1</span>: <span class="string">&quot;a&quot;</span>
+<span class="number">2</span>: <span class="number">1</span> <span class="number">3</span> <span class="op">|</span> <span class="number">3</span> <span class="number">1</span>
+<span class="number">3</span>: <span class="string">&quot;b&quot;</span></pre></div>
+<p>Some rules, like 3: “b”, simply match a single character (in this case, b).</p>
+<p>The remaining rules list the sub-rules that must be followed; for example, the rule 0: 1 2 means that to match rule 0, the text being checked must match rule 1, and the text after the part that matched rule 1 must then match rule 2.</p>
+<p>Some of the rules have multiple lists of sub-rules separated by a pipe (|). This means that at least one list of sub-rules must match. (The ones that match might be different each time the rule is encountered.) For example, the rule 2: 1 3 | 3 1 means that to match rule 2, the text being checked must match rule 1 followed by rule 3 or it must match rule 3 followed by rule 1.</p>
+<p>Fortunately, there are no loops in the rules, so the list of possible matches will be finite. Since rule 1 matches a and rule 3 matches b, rule 2 matches either ab or ba. Therefore, rule 0 matches aab or aba.</p>
+<p>Here’s a more interesting example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="number">0</span>: <span class="number">4</span> <span class="number">1</span> <span class="number">5</span>
+<span class="number">1</span>: <span class="number">2</span> <span class="number">3</span> <span class="op">|</span> <span class="number">3</span> <span class="number">2</span>
+<span class="number">2</span>: <span class="number">4</span> <span class="number">4</span> <span class="op">|</span> <span class="number">5</span> <span class="number">5</span>
+<span class="number">3</span>: <span class="number">4</span> <span class="number">5</span> <span class="op">|</span> <span class="number">5</span> <span class="number">4</span>
+<span class="number">4</span>: <span class="string">&quot;a&quot;</span>
+<span class="number">5</span>: <span class="string">&quot;b&quot;</span></pre></div>
+<p>Here, because rule 4 matches a and rule 5 matches b, rule 2 matches two letters that are the same (aa or bb), and rule 3 matches two letters that are different (ab or ba).</p>
+<p>Since rule 1 matches rules 2 and 3 once each in either order, it must match two pairs of letters, one pair with matching letters and one pair with different letters. This leaves eight possibilities: aaab, aaba, bbab, bbba, abaa, abbb, baaa, or babb.</p>
+<p>Rule 0, therefore, matches a (rule 4), then any of the eight options from rule 1, then b (rule 5): aaaabb, aaabab, abbabb, abbbab, aabaab, aabbbb, abaaab, or ababbb.</p>
+<p>The received messages (the bottom part of your puzzle input) need to be checked against the rules so you can determine which are valid and which are corrupted. Including the rules and the messages together, this might look like:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="number">0</span>: <span class="number">4</span> <span class="number">1</span> <span class="number">5</span>
+<span class="number">1</span>: <span class="number">2</span> <span class="number">3</span> <span class="op">|</span> <span class="number">3</span> <span class="number">2</span>
+<span class="number">2</span>: <span class="number">4</span> <span class="number">4</span> <span class="op">|</span> <span class="number">5</span> <span class="number">5</span>
+<span class="number">3</span>: <span class="number">4</span> <span class="number">5</span> <span class="op">|</span> <span class="number">5</span> <span class="number">4</span>
+<span class="number">4</span>: <span class="string">&quot;a&quot;</span>
+<span class="number">5</span>: <span class="string">&quot;b&quot;</span>
+
+<span class="ident">ababbb</span>
+<span class="ident">bababa</span>
+<span class="ident">abbbab</span>
+<span class="ident">aaabbb</span>
+<span class="ident">aaaabbb</span></pre></div>
+<p>Your goal is to determine the number of messages that completely match rule 0. In the above example, ababbb and abbbab match, but bababa, aaabbb, and aaaabbb do not, producing the answer 2. The whole message must match all of rule 0; there can’t be extra unmatched characters in the message. (For example, aaaabbb might appear to match rule 0 above, but it has an extra unmatched b on the end.)</p>
+<p>How many messages completely match rule 0?</p>
+<p>Your puzzle answer was 171.</p>
+<h2 id="-part-two-" class="section-header"><a href="#-part-two-">— Part Two —</a></h2>
+<p>As you look over the list of messages, you realize your matching rules aren’t quite right. To fix them, completely replace rules 8: 42 and 11: 42 31 with the following:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="number">8</span>: <span class="number">42</span> <span class="op">|</span> <span class="number">42</span> <span class="number">8</span>
+<span class="number">11</span>: <span class="number">42</span> <span class="number">31</span> <span class="op">|</span> <span class="number">42</span> <span class="number">11</span> <span class="number">31</span></pre></div>
+<p>This small change has a big impact: now, the rules do contain loops, and the list of messages they could hypothetically match is infinite. You’ll need to determine how these changes affect which messages are valid.</p>
+<p>Fortunately, many of the rules are unaffected by this change; it might help to start by looking at which rules always match the same set of values and how those rules (especially rules 42 and 31) are used by the new versions of rules 8 and 11.</p>
+<p>(Remember, you only need to handle the rules you have; building a solution that could handle any hypothetical combination of rules would be significantly more difficult.)</p>
+<p>For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="number">42</span>: <span class="number">9</span> <span class="number">14</span> <span class="op">|</span> <span class="number">10</span> <span class="number">1</span>
+<span class="number">9</span>: <span class="number">14</span> <span class="number">27</span> <span class="op">|</span> <span class="number">1</span> <span class="number">26</span>
+<span class="number">10</span>: <span class="number">23</span> <span class="number">14</span> <span class="op">|</span> <span class="number">28</span> <span class="number">1</span>
+<span class="number">1</span>: <span class="string">&quot;a&quot;</span>
+<span class="number">11</span>: <span class="number">42</span> <span class="number">31</span>
+<span class="number">5</span>: <span class="number">1</span> <span class="number">14</span> <span class="op">|</span> <span class="number">15</span> <span class="number">1</span>
+<span class="number">19</span>: <span class="number">14</span> <span class="number">1</span> <span class="op">|</span> <span class="number">14</span> <span class="number">14</span>
+<span class="number">12</span>: <span class="number">24</span> <span class="number">14</span> <span class="op">|</span> <span class="number">19</span> <span class="number">1</span>
+<span class="number">16</span>: <span class="number">15</span> <span class="number">1</span> <span class="op">|</span> <span class="number">14</span> <span class="number">14</span>
+<span class="number">31</span>: <span class="number">14</span> <span class="number">17</span> <span class="op">|</span> <span class="number">1</span> <span class="number">13</span>
+<span class="number">6</span>: <span class="number">14</span> <span class="number">14</span> <span class="op">|</span> <span class="number">1</span> <span class="number">14</span>
+<span class="number">2</span>: <span class="number">1</span> <span class="number">24</span> <span class="op">|</span> <span class="number">14</span> <span class="number">4</span>
+<span class="number">0</span>: <span class="number">8</span> <span class="number">11</span>
+<span class="number">13</span>: <span class="number">14</span> <span class="number">3</span> <span class="op">|</span> <span class="number">1</span> <span class="number">12</span>
+<span class="number">15</span>: <span class="number">1</span> <span class="op">|</span> <span class="number">14</span>
+<span class="number">17</span>: <span class="number">14</span> <span class="number">2</span> <span class="op">|</span> <span class="number">1</span> <span class="number">7</span>
+<span class="number">23</span>: <span class="number">25</span> <span class="number">1</span> <span class="op">|</span> <span class="number">22</span> <span class="number">14</span>
+<span class="number">28</span>: <span class="number">16</span> <span class="number">1</span>
+<span class="number">4</span>: <span class="number">1</span> <span class="number">1</span>
+<span class="number">20</span>: <span class="number">14</span> <span class="number">14</span> <span class="op">|</span> <span class="number">1</span> <span class="number">15</span>
+<span class="number">3</span>: <span class="number">5</span> <span class="number">14</span> <span class="op">|</span> <span class="number">16</span> <span class="number">1</span>
+<span class="number">27</span>: <span class="number">1</span> <span class="number">6</span> <span class="op">|</span> <span class="number">14</span> <span class="number">18</span>
+<span class="number">14</span>: <span class="string">&quot;b&quot;</span>
+<span class="number">21</span>: <span class="number">14</span> <span class="number">1</span> <span class="op">|</span> <span class="number">1</span> <span class="number">14</span>
+<span class="number">25</span>: <span class="number">1</span> <span class="number">1</span> <span class="op">|</span> <span class="number">1</span> <span class="number">14</span>
+<span class="number">22</span>: <span class="number">14</span> <span class="number">14</span>
+<span class="number">8</span>: <span class="number">42</span>
+<span class="number">26</span>: <span class="number">14</span> <span class="number">22</span> <span class="op">|</span> <span class="number">1</span> <span class="number">20</span>
+<span class="number">18</span>: <span class="number">15</span> <span class="number">15</span>
+<span class="number">7</span>: <span class="number">14</span> <span class="number">5</span> <span class="op">|</span> <span class="number">1</span> <span class="number">21</span>
+<span class="number">24</span>: <span class="number">14</span> <span class="number">1</span>
+
+<span class="ident">abbbbbabbbaaaababbaabbbbabababbbabbbbbbabaaaa</span>
+<span class="ident">bbabbbbaabaabba</span>
+<span class="ident">babbbbaabbbbbabbbbbbaabaaabaaa</span>
+<span class="ident">aaabbbbbbaaaabaababaabababbabaaabbababababaaa</span>
+<span class="ident">bbbbbbbaaaabbbbaaabbabaaa</span>
+<span class="ident">bbbababbbbaaaaaaaabbababaaababaabab</span>
+<span class="ident">ababaaaaaabaaab</span>
+<span class="ident">ababaaaaabbbaba</span>
+<span class="ident">baabbaaaabbaaaababbaababb</span>
+<span class="ident">abbbbabbbbaaaababbbbbbaaaababb</span>
+<span class="ident">aaaaabbaabaaaaababaa</span>
+<span class="ident">aaaabbaaaabbaaa</span>
+<span class="ident">aaaabbaabbaaaaaaabbbabbbaaabbaabaaa</span>
+<span class="ident">babaaabbbaaabaababbaabababaaab</span>
+<span class="ident">aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba</span></pre></div>
+<p>Without updating rules 8 and 11, these rules only match three messages: bbabbbbaabaabba, ababaaaaaabaaab, and ababaaaaabbbaba.</p>
+<p>However, after updating rules 8 and 11, a total of 12 messages match:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="ident">bbabbbbaabaabba</span>
+<span class="ident">babbbbaabbbbbabbbbbbaabaaabaaa</span>
+<span class="ident">aaabbbbbbaaaabaababaabababbabaaabbababababaaa</span>
+<span class="ident">bbbbbbbaaaabbbbaaabbabaaa</span>
+<span class="ident">bbbababbbbaaaaaaaabbababaaababaabab</span>
+<span class="ident">ababaaaaaabaaab</span>
+<span class="ident">ababaaaaabbbaba</span>
+<span class="ident">baabbaaaabbaaaababbaababb</span>
+<span class="ident">abbbbabbbbaaaababbbbbbaaaababb</span>
+<span class="ident">aaaaabbaabaaaaababaa</span>
+<span class="ident">aaaabbaabbaaaaaaabbbabbbaaabbaabaaa</span>
+<span class="ident">aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba</span></pre></div>
+<p>After updating rules 8 and 11, how many messages completely match rule 0?</p>
+<p>Your puzzle answer was 369.</p>
+</div><h2 id="enums" class="section-header"><a href="#enums">Enums</a></h2>
 <table><tr class="module-item"><td><a class="enum" href="enum.Rule.html" title="day19::Rule enum">Rule</a></td><td class="docblock-short"><p>This enum defines a “Rule”. That is, either a single character, a list
 of rule numbers, or multiple lists of sub rule numbers separated by a
 pipe character (|).</p>

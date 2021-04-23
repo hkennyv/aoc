@@ -15,12 +15,10 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: 1.52.0-nightly
+          toolchain: 1.52.0
           override: true
       - name: build docs for entire workspace
-        env:
-          RUSTDOCFLAGS: --enable-index-page -Zunstable-options
-        run: cargo +nightly doc --workspace
+        run: cargo doc --workspace
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:

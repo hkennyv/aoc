@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `day19/src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../day19/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../day19/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -193,6 +193,57 @@
 <span id="190">190</span>
 <span id="191">191</span>
 <span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day19&quot;</span>]</span>
 
@@ -205,7 +256,7 @@
 <span class="doccomment">/// This enum defines a &quot;Rule&quot;. That is, either a single character, a list</span>
 <span class="doccomment">/// of rule numbers, or multiple lists of sub rule numbers separated by a</span>
 <span class="doccomment">/// pipe character (|).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">enum</span> <span class="ident">Rule</span> {
     <span class="doccomment">/// A single character (this is essentially our base case)</span>
     <span class="ident">Character</span>(<span class="ident">char</span>),
@@ -216,13 +267,16 @@
     <span class="doccomment">/// each side of the pipe character. The evaluated sequence of characters</span>
     <span class="doccomment">/// for this type of rule is (A|B) where A is the left side and B is the</span>
     <span class="doccomment">/// right side of the pipe.</span>
-    <span class="ident">Multiple</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>),
+    <span class="ident">Multiple</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>),
 }
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> (<span class="ident">rules</span>, <span class="ident">messages</span>) <span class="op">=</span> <span class="ident">parse_input</span>(<span class="string">&quot;input.txt&quot;</span>);
     <span class="kw">let</span> <span class="ident">res_p1</span> <span class="op">=</span> <span class="ident">part1</span>(<span class="kw-2">&amp;</span><span class="ident">rules</span>, <span class="kw-2">&amp;</span><span class="ident">messages</span>);
     <span class="macro">println!</span>(<span class="string">&quot;res p1: {}&quot;</span>, <span class="ident">res_p1</span>);
+
+    <span class="kw">let</span> <span class="ident">res_p2</span> <span class="op">=</span> <span class="ident">part2</span>(<span class="kw-2">&amp;</span><span class="ident">rules</span>, <span class="kw-2">&amp;</span><span class="ident">messages</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;res p2: {}&quot;</span>, <span class="ident">res_p2</span>);
 }
 
 <span class="doccomment">/// The input.txt is split up into two portions: a top and a bottom. The top</span>
@@ -283,16 +337,61 @@
     <span class="ident">count</span>
 }
 
+<span class="doccomment">/// In this part, we replace rule 8 and 11 with 42 | 42 8 and 42 31 | 42 11 31</span>
+<span class="doccomment">/// respectively. For this implementation, we define a maximum depth that we</span>
+<span class="doccomment">/// want to generate the rules for since they are recursive (5 is the maximum</span>
+<span class="doccomment">/// depth required for _my_ input).</span>
+<span class="kw">fn</span> <span class="ident">part2</span>(<span class="ident">rules</span>: <span class="kw-2">&amp;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Rule</span><span class="op">&gt;</span>, <span class="ident">messages</span>: <span class="kw-2">&amp;</span>[<span class="ident">String</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">const</span> <span class="ident">MAX_DEPTH</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">5</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="kw">let</span> <span class="ident">rule</span> <span class="op">=</span> <span class="ident">rules</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="number">0</span>).<span class="ident">unwrap</span>();
+
+    <span class="comment">// build rule8</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_rule8</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">MAX_DEPTH</span> {
+        <span class="ident">new_rule8</span>.<span class="ident">push</span>(<span class="macro">vec!</span>[<span class="number">42</span>; <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>])
+    }
+
+    <span class="comment">// build rul11</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_rule11</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">MAX_DEPTH</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inner</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">42</span>; <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>];
+        <span class="ident">inner</span>.<span class="ident">extend</span>(<span class="macro">vec!</span>[<span class="number">31</span>; <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>]);
+        <span class="ident">new_rule11</span>.<span class="ident">push</span>(<span class="ident">inner</span>);
+    }
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_rules</span> <span class="op">=</span> <span class="ident">rules</span>.<span class="ident">clone</span>();
+
+    <span class="ident">new_rules</span>.<span class="ident">insert</span>(<span class="number">8</span>, <span class="ident">Rule::Multiple</span>(<span class="ident">new_rule8</span>));
+    <span class="ident">new_rules</span>.<span class="ident">insert</span>(<span class="number">11</span>, <span class="ident">Rule::Multiple</span>(<span class="ident">new_rule11</span>));
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rgx</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">rule</span> {
+        <span class="ident">Rule::Single</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">evaluate_rule</span>(<span class="kw-2">&amp;</span><span class="ident">new_rules</span>, <span class="ident">v</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">String::new</span>(),
+    };
+
+    <span class="comment">// we need to add the &quot;start of string&quot; and &quot;end of string&quot; tokens to make</span>
+    <span class="comment">// sure we are matching _only_ what the rules say</span>
+    <span class="ident">rgx</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;^{}$&quot;</span>, <span class="ident">rgx</span>);
+
+    <span class="kw">let</span> <span class="ident">re</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="kw-2">&amp;</span><span class="ident">rgx</span>).<span class="ident">unwrap</span>();
+
+    <span class="kw">for</span> <span class="ident">message</span> <span class="kw">in</span> <span class="ident">messages</span> {
+        <span class="kw">if</span> <span class="ident">re</span>.<span class="ident">is_match</span>(<span class="ident">message</span>) {
+            <span class="ident">count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        }
+    }
+
+    <span class="ident">count</span>
+}
+
 <span class="doccomment">/// Parses a rule given a string slice</span>
 <span class="kw">fn</span> <span class="ident">parse_rule</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rule</span> {
     <span class="comment">// Multiple</span>
     <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">contains</span>(<span class="string">&#39;|&#39;</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">split</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">split</span>(<span class="string">&#39;|&#39;</span>);
+        <span class="ident">Rule::Multiple</span>(<span class="ident">s</span>.<span class="ident">split</span>(<span class="string">&#39;|&#39;</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">rule</span><span class="op">|</span> <span class="ident">s_to_vec</span>(<span class="ident">rule</span>)).<span class="ident">collect</span>())
 
-        <span class="ident">Rule::Multiple</span>(
-            <span class="ident">s_to_vec</span>(<span class="ident">split</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>()),
-            <span class="ident">s_to_vec</span>(<span class="ident">split</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>()),
-        )
     <span class="comment">// Character</span>
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">contains</span>(<span class="string">&#39;&quot;&#39;</span>) {
         <span class="ident">Rule::Character</span>(
@@ -317,11 +416,14 @@
         <span class="kw">match</span> <span class="ident">rule</span> {
             <span class="ident">Rule::Character</span>(<span class="ident">c</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">s</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;({})&quot;</span>, <span class="kw-2">*</span><span class="ident">c</span>)),
             <span class="ident">Rule::Single</span>(<span class="ident">sub_rules</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">s</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="ident">evaluate_rule</span>(<span class="ident">rules</span>, <span class="ident">sub_rules</span>)),
-            <span class="ident">Rule::Multiple</span>(<span class="ident">sub_rules1</span>, <span class="ident">sub_rules2</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="ident">evaluate_rule</span>(<span class="ident">rules</span>, <span class="ident">sub_rules1</span>);
-                <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="ident">evaluate_rule</span>(<span class="ident">rules</span>, <span class="ident">sub_rules2</span>);
+            <span class="ident">Rule::Multiple</span>(<span class="ident">sub_rules</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">sub_rules</span>
+                    .<span class="ident">iter</span>()
+                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">sub_rule</span><span class="op">|</span> <span class="ident">evaluate_rule</span>(<span class="ident">rules</span>, <span class="ident">sub_rule</span>))
+                    .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>()
+                    .<span class="ident">join</span>(<span class="string">&quot;|&quot;</span>);
 
-                <span class="ident">s</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;({}|{})&quot;</span>, <span class="ident">left</span>, <span class="ident">right</span>));
+                <span class="ident">s</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;({})&quot;</span>, <span class="ident">inner</span>));
             }
         }
     }
@@ -353,9 +455,9 @@
         ];
         <span class="kw">let</span> <span class="ident">answers</span> <span class="op">=</span> <span class="macro">vec!</span>[
             <span class="ident">Rule::Single</span>(<span class="macro">vec!</span>[<span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>]),
-            <span class="ident">Rule::Multiple</span>(<span class="macro">vec!</span>[<span class="number">2</span>, <span class="number">3</span>], <span class="macro">vec!</span>[<span class="number">3</span>, <span class="number">2</span>]),
-            <span class="ident">Rule::Multiple</span>(<span class="macro">vec!</span>[<span class="number">4</span>, <span class="number">4</span>], <span class="macro">vec!</span>[<span class="number">5</span>, <span class="number">5</span>]),
-            <span class="ident">Rule::Multiple</span>(<span class="macro">vec!</span>[<span class="number">4</span>, <span class="number">5</span>], <span class="macro">vec!</span>[<span class="number">5</span>, <span class="number">4</span>]),
+            <span class="ident">Rule::Multiple</span>(<span class="macro">vec!</span>[<span class="macro">vec!</span>[<span class="number">2</span>, <span class="number">3</span>], <span class="macro">vec!</span>[<span class="number">3</span>, <span class="number">2</span>]]),
+            <span class="ident">Rule::Multiple</span>(<span class="macro">vec!</span>[<span class="macro">vec!</span>[<span class="number">4</span>, <span class="number">4</span>], <span class="macro">vec!</span>[<span class="number">5</span>, <span class="number">5</span>]]),
+            <span class="ident">Rule::Multiple</span>(<span class="macro">vec!</span>[<span class="macro">vec!</span>[<span class="number">4</span>, <span class="number">5</span>], <span class="macro">vec!</span>[<span class="number">5</span>, <span class="number">4</span>]]),
             <span class="ident">Rule::Character</span>(<span class="string">&#39;a&#39;</span>),
             <span class="ident">Rule::Character</span>(<span class="string">&#39;b&#39;</span>),
         ];
@@ -387,5 +489,5 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="day19" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="day19" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

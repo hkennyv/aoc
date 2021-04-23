@@ -9,7 +9,7 @@ use regex::Regex;
 /// This enum defines a "Rule". That is, either a single character, a list
 /// of rule numbers, or multiple lists of sub rule numbers separated by a
 /// pipe character (|).
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 enum Rule {
     /// A single character (this is essentially our base case)
     Character(char),
@@ -20,13 +20,16 @@ enum Rule {
     /// each side of the pipe character. The evaluated sequence of characters
     /// for this type of rule is (A|B) where A is the left side and B is the
     /// right side of the pipe.
-    Multiple(Vec<usize>, Vec<usize>),
+    Multiple(Vec<Vec<usize>>),
 }
 
 fn main() {
     let (rules, messages) = parse_input("input.txt");
     let res_p1 = part1(&rules, &messages);
     println!("res p1: {}", res_p1);
+
+    let res_p2 = part2(&rules, &messages);
+    println!("res p2: {}", res_p2);
 }
 
 /// The input.txt is split up into two portions: a top and a bottom. The top
@@ -87,16 +90,61 @@ fn part1(rules: &HashMap<usize, Rule>, messages: &[String]) -> usize {
     count
 }
 
+/// In this part, we replace rule 8 and 11 with 42 | 42 8 and 42 31 | 42 11 31
+/// respectively. For this implementation, we define a maximum depth that we
+/// want to generate the rules for since they are recursive (5 is the maximum
+/// depth required for _my_ input).
+fn part2(rules: &HashMap<usize, Rule>, messages: &[String]) -> usize {
+    const MAX_DEPTH: usize = 5;
+    let mut count = 0;
+
+    let rule = rules.get(&0).unwrap();
+
+    // build rule8
+    let mut new_rule8 = Vec::new();
+    for i in 0..MAX_DEPTH {
+        new_rule8.push(vec![42; i + 1])
+    }
+
+    // build rul11
+    let mut new_rule11 = Vec::new();
+    for i in 0..MAX_DEPTH {
+        let mut inner = vec![42; i + 1];
+        inner.extend(vec![31; i + 1]);
+        new_rule11.push(inner);
+    }
+
+    let mut new_rules = rules.clone();
+
+    new_rules.insert(8, Rule::Multiple(new_rule8));
+    new_rules.insert(11, Rule::Multiple(new_rule11));
+
+    let mut rgx = match rule {
+        Rule::Single(v) => evaluate_rule(&new_rules, v),
+        _ => String::new(),
+    };
+
+    // we need to add the "start of string" and "end of string" tokens to make
+    // sure we are matching _only_ what the rules say
+    rgx = format!("^{}$", rgx);
+
+    let re = Regex::new(&rgx).unwrap();
+
+    for message in messages {
+        if re.is_match(message) {
+            count += 1;
+        }
+    }
+
+    count
+}
+
 /// Parses a rule given a string slice
 fn parse_rule(s: &str) -> Rule {
     // Multiple
     if s.contains('|') {
-        let mut split = s.split('|');
+        Rule::Multiple(s.split('|').map(|rule| s_to_vec(rule)).collect())
 
-        Rule::Multiple(
-            s_to_vec(split.next().unwrap()),
-            s_to_vec(split.next().unwrap()),
-        )
     // Character
     } else if s.contains('"') {
         Rule::Character(
@@ -121,11 +169,14 @@ fn evaluate_rule(rules: &HashMap<usize, Rule>, v: &[usize]) -> String {
         match rule {
             Rule::Character(c) => s.push_str(&format!("({})", *c)),
             Rule::Single(sub_rules) => s.push_str(&evaluate_rule(rules, sub_rules)),
-            Rule::Multiple(sub_rules1, sub_rules2) => {
-                let left = evaluate_rule(rules, sub_rules1);
-                let right = evaluate_rule(rules, sub_rules2);
+            Rule::Multiple(sub_rules) => {
+                let inner = sub_rules
+                    .iter()
+                    .map(|sub_rule| evaluate_rule(rules, sub_rule))
+                    .collect::<Vec<String>>()
+                    .join("|");
 
-                s.push_str(&format!("({}|{})", left, right));
+                s.push_str(&format!("({})", inner));
             }
         }
     }
@@ -157,9 +208,9 @@ mod tests {
         ];
         let answers = vec![
             Rule::Single(vec![4, 1, 5]),
-            Rule::Multiple(vec![2, 3], vec![3, 2]),
-            Rule::Multiple(vec![4, 4], vec![5, 5]),
-            Rule::Multiple(vec![4, 5], vec![5, 4]),
+            Rule::Multiple(vec![vec![2, 3], vec![3, 2]]),
+            Rule::Multiple(vec![vec![4, 4], vec![5, 5]]),
+            Rule::Multiple(vec![vec![4, 5], vec![5, 4]]),
             Rule::Character('a'),
             Rule::Character('b'),
         ];

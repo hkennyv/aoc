@@ -156,15 +156,15 @@ mod tests {
     use super::*;
     #[test]
     fn test_validate_hgt() {
-        assert_eq!(Passport::validate_hgt("120cm".to_string()), false);
-        assert_eq!(Passport::validate_hgt("150cm".to_string()), true);
-        assert_eq!(Passport::validate_hgt("193cm".to_string()), true);
-        assert_eq!(Passport::validate_hgt("200cm".to_string()), false);
+        assert!(!Passport::validate_hgt("120cm".to_string()));
+        assert!(Passport::validate_hgt("150cm".to_string()));
+        assert!(Passport::validate_hgt("193cm".to_string()));
+        assert!(!Passport::validate_hgt("200cm".to_string()));
 
-        assert_eq!(Passport::validate_hgt("59in".to_string()), true);
-        assert_eq!(Passport::validate_hgt("76in".to_string()), true);
-        assert_eq!(Passport::validate_hgt("77in".to_string()), false);
-        assert_eq!(Passport::validate_hgt("7in".to_string()), false);
+        assert!(Passport::validate_hgt("59in".to_string()));
+        assert!(Passport::validate_hgt("76in".to_string()));
+        assert!(!Passport::validate_hgt("77in".to_string()));
+        assert!(!Passport::validate_hgt("7in".to_string()));
     }
 
     #[test]
@@ -173,11 +173,11 @@ mod tests {
         let invalid_eyecolors = vec!["wut", "helo", "goodbye"];
 
         for color in valid_eyecolors {
-            assert_eq!(Passport::validate_ecl(color.to_string()), true);
+            assert!(Passport::validate_ecl(color.to_string()));
         }
 
         for color in invalid_eyecolors {
-            assert_eq!(Passport::validate_ecl(color.to_string()), false);
+            assert!(!Passport::validate_ecl(color.to_string()));
         }
     }
 
@@ -187,11 +187,11 @@ mod tests {
         let invalid_pids = vec!["1234567", "9999999"];
 
         for pid in valid_pids {
-            assert_eq!(Passport::validate_pid(pid.to_string()), true);
+            assert!(Passport::validate_pid(pid.to_string()));
         }
 
         for pid in invalid_pids {
-            assert_eq!(Passport::validate_pid(pid.to_string()), false);
+            assert!(!Passport::validate_pid(pid.to_string()));
         }
     }
 }

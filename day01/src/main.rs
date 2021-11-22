@@ -146,17 +146,17 @@ mod tests {
 
     #[test]
     fn test_assert_indices_havent_crossed() {
-        assert_eq!(assert_indices_havent_crossed(1, 2, 3), true);
-        assert_eq!(assert_indices_havent_crossed(5, 6, 13), true);
-        assert_eq!(assert_indices_havent_crossed(0, 2, 3), true);
-        assert_eq!(assert_indices_havent_crossed(6, 1000, 1001), true);
+        assert!(assert_indices_havent_crossed(1, 2, 3));
+        assert!(assert_indices_havent_crossed(5, 6, 13));
+        assert!(assert_indices_havent_crossed(0, 2, 3));
+        assert!(assert_indices_havent_crossed(6, 1000, 1001));
     }
 
     #[test]
     fn test_assert_indices_havent_crossed_fails() {
-        assert_eq!(assert_indices_havent_crossed(2, 2, 3), false);
-        assert_eq!(assert_indices_havent_crossed(1, 2, 2), false);
-        assert_eq!(assert_indices_havent_crossed(5, 3, 1), false);
-        assert_eq!(assert_indices_havent_crossed(1, 1, 1), false);
+        assert!(!assert_indices_havent_crossed(2, 2, 3));
+        assert!(!assert_indices_havent_crossed(1, 2, 2));
+        assert!(!assert_indices_havent_crossed(5, 3, 1));
+        assert!(!assert_indices_havent_crossed(1, 1, 1));
     }
 }

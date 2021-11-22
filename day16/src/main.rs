@@ -244,10 +244,9 @@ fn solve_matrix(matrix: &mut Vec<(&str, HashSet<usize>)>) {
             }
 
             finished.insert(matrix[i % matrix.len()].0);
-            i += 1;
-        } else {
-            i += 1;
         }
+
+        i += 1;
     }
 }
 

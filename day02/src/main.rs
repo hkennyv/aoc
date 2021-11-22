@@ -130,7 +130,7 @@ fn parse_input_row(row: String) -> (String, String) {
     let split: Vec<&str> = row.split(':').collect();
     let policy = String::from(split[0]);
     let mut password = String::from(split[1]);
-    password = password.strip_prefix(" ").unwrap().to_string();
+    password = password.strip_prefix(' ').unwrap().to_string();
 
     (policy, password)
 }

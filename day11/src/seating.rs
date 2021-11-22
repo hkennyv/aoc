@@ -29,7 +29,7 @@ impl SeatingSystem {
         let mut new_grid: Vec<Vec<char>> = self.grid.to_vec();
         let mut has_changed = false;
 
-        #[allow(clippy::clippy::needless_range_loop)]
+        #[allow(clippy::needless_range_loop)]
         for i in 0..self.grid.len() {
             for j in 0..self.grid[i].len() {
                 let seat = self.grid[i][j];

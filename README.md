@@ -12,10 +12,14 @@
 
 ## Overview
 
-This repository contains my solutions for Advent of Code (AOC) 2020. I'm taking
-this year's AOC to sharpen my [rust](https://www.rust-lang.org/) skills.
+This repository contains my solutions for the Advent of Code challenges. Each
+year is broken up into its own directory. Inside each year is a Cargo workspace
+containing all of the month's days.
 
-You can view the [Advent of Code 2020 here](https://adventofcode.com/2020).
+You can view the prompts for each of
+[Advent of Code challenges here](https://adventofcode.com/2021/events).
+
+- [2020](./2020)
 
 ## How to use
 
@@ -60,9 +64,11 @@ Or if you'd like, you can view the [docs online @ github pages](https://hkennyv.
 
 ## License
 
+See [LICENSE](./LICENSE).
+
 MIT License
 
-Copyright (c) 2020 Kenny Huynh
+Copyright (c) 2021 Kenny Huynh
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

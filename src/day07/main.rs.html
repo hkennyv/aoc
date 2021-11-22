@@ -247,8 +247,6 @@
 <span id="244">244</span>
 <span id="245">245</span>
 <span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day07&quot;</span>]</span>
 
@@ -342,8 +340,7 @@
 <span class="doccomment">/// calculates the number of bag colors that can eventually contain at least</span>
 <span class="doccomment">/// one &quot;shiny gold&quot; bag</span>
 <span class="kw">fn</span> <span class="ident">part1</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
-    <span class="kw">let</span> <span class="ident">rules</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">input</span>.<span class="ident">lines</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">line</span><span class="op">|</span> <span class="ident">parse_rule</span>(<span class="ident">line</span>)).<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="ident">rules</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">lines</span>().<span class="ident">map</span>(<span class="ident">parse_rule</span>).<span class="ident">collect</span>();
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">has_golden</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">HashSet</span>::<span class="ident">new</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bags</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">HashSet</span>::<span class="ident">new</span>();
@@ -363,8 +360,7 @@
 
 <span class="doccomment">/// calculates the number of bags inside of a &quot;shiny gold&quot; bag</span>
 <span class="kw">fn</span> <span class="ident">part2</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
-    <span class="kw">let</span> <span class="ident">rules</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">String</span>)<span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">input</span>.<span class="ident">lines</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">line</span><span class="op">|</span> <span class="ident">parse_rule2</span>(<span class="ident">line</span>)).<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="ident">rules</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">String</span>)<span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">lines</span>().<span class="ident">map</span>(<span class="ident">parse_rule2</span>).<span class="ident">collect</span>();
 
     <span class="comment">// setup cache</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count_cache</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();

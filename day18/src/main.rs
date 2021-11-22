@@ -112,7 +112,7 @@ fn part1(expressions: &[String]) -> u64 {
 
     expressions
         .iter()
-        .map(|expression| solve_reverse_polish(&mut make_reverse_polish(&expression, &precedance)))
+        .map(|expression| solve_reverse_polish(&mut make_reverse_polish(expression, &precedance)))
         .sum()
 }
 
@@ -127,7 +127,7 @@ fn part2(expressions: &[String]) -> u64 {
 
     expressions
         .iter()
-        .map(|expression| solve_reverse_polish(&mut make_reverse_polish(&expression, &precedance)))
+        .map(|expression| solve_reverse_polish(&mut make_reverse_polish(expression, &precedance)))
         .sum()
 }
 

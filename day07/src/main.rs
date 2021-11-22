@@ -90,8 +90,7 @@ fn main() {
 /// calculates the number of bag colors that can eventually contain at least
 /// one "shiny gold" bag
 fn part1(input: &str) -> i32 {
-    let rules: Vec<(String, HashSet<String>)> =
-        input.lines().map(|line| parse_rule(line)).collect();
+    let rules: Vec<(String, HashSet<String>)> = input.lines().map(parse_rule).collect();
 
     let mut has_golden: HashSet<String> = HashSet::new();
     let mut bags: HashSet<String> = HashSet::new();
@@ -111,8 +110,7 @@ fn part1(input: &str) -> i32 {
 
 /// calculates the number of bags inside of a "shiny gold" bag
 fn part2(input: &str) -> i32 {
-    let rules: HashMap<String, Vec<(i32, String)>> =
-        input.lines().map(|line| parse_rule2(line)).collect();
+    let rules: HashMap<String, Vec<(i32, String)>> = input.lines().map(parse_rule2).collect();
 
     // setup cache
     let mut count_cache = HashMap::new();

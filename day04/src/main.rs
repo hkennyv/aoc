@@ -148,7 +148,7 @@ fn main() {
 
     let res_p1 = input
         .iter()
-        .map(|line| parse_passport(&line))
+        .map(|line| parse_passport(line))
         .map(|passport| passport.is_valid_p1())
         .filter(|res| *res)
         .count();
@@ -157,7 +157,7 @@ fn main() {
 
     let res_p2 = input
         .iter()
-        .map(|line| parse_passport(&line))
+        .map(|line| parse_passport(line))
         .map(|passport| passport.is_valid_p2())
         .filter(|res| *res)
         .count();

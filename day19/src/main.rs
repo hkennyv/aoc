@@ -296,7 +296,7 @@ fn part2(rules: &HashMap<usize, Rule>, messages: &[String]) -> usize {
 fn parse_rule(s: &str) -> Rule {
     // Multiple
     if s.contains('|') {
-        Rule::Multiple(s.split('|').map(|rule| s_to_vec(rule)).collect())
+        Rule::Multiple(s.split('|').map(s_to_vec).collect())
 
     // Character
     } else if s.contains('"') {

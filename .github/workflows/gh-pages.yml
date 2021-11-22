@@ -22,9 +22,8 @@ jobs:
         run: cargo doc --workspace
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
-        working-directory: ./2020
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: target/doc
+          FOLDER: 2020/target/doc
           PRESERVE: true

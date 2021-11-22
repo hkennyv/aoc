@@ -14,7 +14,8 @@ jobs:
           toolchain: stable
           override: true
       - uses: actions-rs/cargo@v1
-        working-directory: ./2020
         with:
           command: test
-          args: --all
+          # gh-actions 'working-directory' isn't implemented for this action
+          # https://github.com/actions-rs/cargo/issues/86#issuecomment-667088617
+          args: --all --manifest-path 2020/Cargo.toml

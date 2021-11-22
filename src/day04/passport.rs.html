@@ -357,15 +357,15 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_validate_hgt</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;120cm&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">false</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;150cm&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;193cm&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;200cm&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">false</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;120cm&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;150cm&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;193cm&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;200cm&quot;</span>.<span class="ident">to_string</span>()));
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;59in&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;76in&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;77in&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">false</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;7in&quot;</span>.<span class="ident">to_string</span>()), <span class="bool-val">false</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;59in&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;76in&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;77in&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">Passport</span>::<span class="ident">validate_hgt</span>(<span class="string">&quot;7in&quot;</span>.<span class="ident">to_string</span>()));
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -374,11 +374,11 @@
         <span class="kw">let</span> <span class="ident">invalid_eyecolors</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;wut&quot;</span>, <span class="string">&quot;helo&quot;</span>, <span class="string">&quot;goodbye&quot;</span>];
 
         <span class="kw">for</span> <span class="ident">color</span> <span class="kw">in</span> <span class="ident">valid_eyecolors</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_ecl</span>(<span class="ident">color</span>.<span class="ident">to_string</span>()), <span class="bool-val">true</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_ecl</span>(<span class="ident">color</span>.<span class="ident">to_string</span>()));
         }
 
         <span class="kw">for</span> <span class="ident">color</span> <span class="kw">in</span> <span class="ident">invalid_eyecolors</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_ecl</span>(<span class="ident">color</span>.<span class="ident">to_string</span>()), <span class="bool-val">false</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">Passport</span>::<span class="ident">validate_ecl</span>(<span class="ident">color</span>.<span class="ident">to_string</span>()));
         }
     }
 
@@ -388,11 +388,11 @@
         <span class="kw">let</span> <span class="ident">invalid_pids</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;1234567&quot;</span>, <span class="string">&quot;9999999&quot;</span>];
 
         <span class="kw">for</span> <span class="ident">pid</span> <span class="kw">in</span> <span class="ident">valid_pids</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_pid</span>(<span class="ident">pid</span>.<span class="ident">to_string</span>()), <span class="bool-val">true</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_pid</span>(<span class="ident">pid</span>.<span class="ident">to_string</span>()));
         }
 
         <span class="kw">for</span> <span class="ident">pid</span> <span class="kw">in</span> <span class="ident">invalid_pids</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Passport</span>::<span class="ident">validate_pid</span>(<span class="ident">pid</span>.<span class="ident">to_string</span>()), <span class="bool-val">false</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">Passport</span>::<span class="ident">validate_pid</span>(<span class="ident">pid</span>.<span class="ident">to_string</span>()));
         }
     }
 }

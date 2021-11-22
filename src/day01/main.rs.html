@@ -312,18 +312,18 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_assert_indices_havent_crossed</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">5</span>, <span class="number">6</span>, <span class="number">13</span>), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="bool-val">true</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">6</span>, <span class="number">1000</span>, <span class="number">1001</span>), <span class="bool-val">true</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">5</span>, <span class="number">6</span>, <span class="number">13</span>));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">6</span>, <span class="number">1000</span>, <span class="number">1001</span>));
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_assert_indices_havent_crossed_fails</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="bool-val">false</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>), <span class="bool-val">false</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>), <span class="bool-val">false</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">assert_indices_havent_crossed</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), <span class="bool-val">false</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">assert_indices_havent_crossed</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">assert_indices_havent_crossed</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">assert_indices_havent_crossed</span>(<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>));
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">assert_indices_havent_crossed</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>));
     }
 }
 </pre></div>

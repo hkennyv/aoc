@@ -18,9 +18,11 @@ jobs:
           toolchain: 1.51.0
           override: true
       - name: build docs for entire workspace
+        working-directory: ./2020
         run: cargo doc --workspace
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
+        working-directory: ./2020
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages

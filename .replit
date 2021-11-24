@@ -1,0 +1,2 @@
+language = "rust"
+run = "echo '\n\n'\u001b[32m'please `cd` into the day you want to run and use `cargo run --release` to run. (e.g. `cd 2020/day10 && cargo run --release`)\u001b[0m'"

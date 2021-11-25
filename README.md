@@ -19,11 +19,32 @@ containing all of the month's days.
 You can view the prompts for each of
 [Advent of Code challenges here](https://adventofcode.com/2021/events).
 
-- [2020](./2020)
+- [2019](./2020)
+- [2020](./2019)
 
 ## How to use
 
-### Prerequisites
+There are two ways that you can run the code in this repository:
+
+- Run it using [Replit](https://replit.com/)
+- Run it locally
+
+### Running in replit
+
+You can now run all of the examples in this repository without installing any
+rust toolchains or dependencies directly in the browser here:
+
+<https://replit.com/@hkennyv/aoc#README.md>
+
+Simply go to the link above, skip the **running locally** section below
+and go straight to the [**running the code**](#running-the-code) section.
+
+### Running locally
+
+In order to run locally, you'll have to install the rust toolchain
+using rustup. See below.
+
+#### Prerequisites
 
 - install rust using [rustup](https://www.rust-lang.org/tools/install) (this
   should install the cargo toolchain as well). using the nightly build is
@@ -34,7 +55,9 @@ You can view the prompts for each of
 Any day of the AOC can be run by going into that day's directory and running:
 
 ```
-cargo run
+# e.g. if you want to run 2020/day10
+$ cd 2020/day10
+$ cargo run --release
 ```
 
 **NOTE:** everyone's input for the advent of code is different. I've committed

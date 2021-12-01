@@ -98,6 +98,7 @@ use std::fs;
 
 fn main() {
     let measurements = read_input("input.txt");
+
     let part1 = count_windowed_increases(&measurements, 1);
     let part2 = count_windowed_increases(&measurements, 3);
 
@@ -117,6 +118,27 @@ fn count_windowed_increases(measurements: &[usize], window_size: usize) -> usize
         if current > prev {
             increases += 1;
         }
+    }
+
+    increases
+}
+
+/// Counts the number of increaes given a list of measurements and a window
+/// size using a rolling calculation for the previous and current values
+#[allow(dead_code)]
+fn count_windowed_increases_rolling(measurements: &[usize], window_size: usize) -> usize {
+    let mut increases: usize = 0;
+
+    let mut prev: usize = measurements[0..window_size].iter().sum();
+
+    for i in window_size..measurements.len() {
+        let current = prev - measurements[i - window_size] + measurements[i];
+
+        if current > prev {
+            increases += 1;
+        }
+
+        prev = current;
     }
 
     increases

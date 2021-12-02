@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Advent of Code"><meta name="keywords" content="rust, rustlang, rust-lang, aoc"><title>aoc - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../aoc/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate aoc</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all aoc's items</p></a><div class="block items"><ul><li><a href="#functions">Functions</a></li></ul></div><div id="sidebar-vars" data-name="aoc" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">aoc</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/aoc/main.rs.html#1-136" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p align="center">
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3Agh-pages"><img alt="gh-pages" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/gh-pages?label=gh-pages"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3ABuild"><img alt="build" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Build?label=build"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3ATest"><img alt="test" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Test?label=test"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3AFormat"><img alt="format" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Format?label=format"></a>
+  <a href="https://github.com/hkennyv/aoc/actions?query=workflow%3AClippy"><img alt="clippy" src="https://img.shields.io/github/workflow/status/hkennyv/aoc/Clippy?label=clippy"></a>
+</p>
+<h2 id="advent-of-code" class="section-header"><a href="#advent-of-code">Advent of Code</a></h2>
+<p><strong>Use the links below to jump to a specific year</strong></p>
+<ul>
+<li><a href="https://hkennyv.github.io/aoc/aoc/index.html"><strong>AOC</strong></a></li>
+<li><a href="https://hkennyv.github.io/aoc/aoc/2019/doc/aoc_2019/index.html"><strong>2019</strong></a></li>
+<li><a href="https://hkennyv.github.io/aoc/aoc/2020/doc/aoc_2020/index.html"><strong>2020</strong></a></li>
+<li><a href="https://hkennyv.github.io/aoc/aoc/2021/doc/aoc_2021/index.html"><strong>2021</strong></a></li>
+</ul>
+<h2 id="introduction" class="section-header"><a href="#introduction">Introduction</a></h2>
+<p>Advent of Code (AOC) is crated by <a href="http://was.tl/">Eric Wastl</a> and is an
+annual advent calendar of small programming puzzles. They can be solved
+in any language (you don’t really need code at all to solve some of them)
+and its intended for people of all skill levels. There are a total of
+25 exercises per year, one per day starting on December 1st and ending on
+December 25th (Christmas).</p>
+<p>You can find all of the advent of code exercises on the official website
+here:</p>
+<p><a href="https://adventofcode.com/events">https://adventofcode.com/events</a></p>
+<h2 id="overview" class="section-header"><a href="#overview">Overview</a></h2>
+<p>I’m using AOC as an opportunity to sharpen my rust skills and get more
+familiar with the language and toolchain.</p>
+<p>This AOC crate serves as a dummy top-level create that links to each of the
+other years.</p>
+<p>The repository is structured as follows:</p>
+<ul>
+<li><strong>Each year is a <a href="https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html">cargo workspace</a></strong></li>
+<li><strong>Each day is a <a href="https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html">cargo crate</a></strong></li>
+</ul>
+<p>Cheers &amp; happy coding!</p>
+<h2 id="how-to-use" class="section-header"><a href="#how-to-use">How to use</a></h2>
+<p>There are two ways that you can run the code in this repository:</p>
+<ul>
+<li>Run it using <a href="https://replit.com/">Replit</a></li>
+<li>Run it locally</li>
+</ul>
+<h3 id="running-in-replit" class="section-header"><a href="#running-in-replit">Running in replit</a></h3>
+<p>You can now run all of the examples in this repository without installing any
+rust toolchains or dependencies directly in the browser here:</p>
+<p><a href="https://replit.com/@hkennyv/aoc#README.md">https://replit.com/@hkennyv/aoc#README.md</a></p>
+<p>Simply go to the link above, skip the <strong>running locally</strong> section below
+and go straight to the <a href="#running-the-code"><strong>running the code</strong></a> section.</p>
+<h3 id="running-locally" class="section-header"><a href="#running-locally">Running locally</a></h3>
+<p>In order to run locally, you’ll have to install the rust toolchain
+using rustup. See below.</p>
+<h4 id="prerequisites" class="section-header"><a href="#prerequisites">Prerequisites</a></h4>
+<ul>
+<li>install rust using <a href="https://www.rust-lang.org/tools/install">rustup</a> (this
+should install the cargo toolchain as well). using the nightly build is
+recommended</li>
+</ul>
+<h3 id="running-the-code" class="section-header"><a href="#running-the-code">Running the code</a></h3>
+<p>Any day of the AOC can be run by going into that day’s directory and running:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ <span class="ident">cd</span> <span class="number">2020</span><span class="op">/</span><span class="ident">day10</span>
+$ <span class="ident">cargo</span> <span class="ident">run</span> <span class="op">-</span><span class="op">-</span><span class="ident">release</span></code></pre></div>
+<p><strong>NOTE:</strong> everyone’s input for the advent of code is different. I’ve committed
+the input for my account in this repository and the answers for my input in
+the documentation, however, feel free to run the solutions using your own
+input. Each crate reads from an “input.txt” file in their respective
+directories.</p>
+<h2 id="documentation" class="section-header"><a href="#documentation">Documentation</a></h2>
+<p><strong>Bonus:</strong> I’ve added the description of each day’s challenge to the crate
+description so you can view all of the challenges and all of the
+functions and their docstrings that I used.</p>
+<p>To build the documentation for each workspace, simply run the following
+command in the year’s workspace:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">cargo</span> <span class="ident">doc</span> <span class="op">-</span><span class="op">-</span><span class="ident">workspace</span> <span class="op">-</span><span class="op">-</span><span class="ident">open</span></code></pre></div>
+<p>The documentation should automatically open up in your browser. Each of the
+AOC days should appear in the left-hand sidebar as its own crate that you can
+choose to view.</p>
+<h3 id="readme" class="section-header"><a href="#readme">README</a></h3>
+<p><strong>NOTE: this readme is generated using <a href="https://github.com/livioribeiro/cargo-readme">cargo-readme</a>.</strong></p>
+<p>To edit the README, please edit the <a href="src/main.rs"><code>src/main.rs</code></a> file and
+regenerate the README using the following command:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">cargo</span> <span class="ident">readme</span> <span class="op">&gt;</span> <span class="ident">README</span>.<span class="ident">md</span></code></pre></div>
+<h2 id="tests" class="section-header"><a href="#tests">Tests</a></h2>
+<p>Many crates also have some runnable tests that you can run using:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">cargo</span> <span class="ident">test</span></code></pre></div>
+<p>Alternatively, run tests for the entire workspace using:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">cargo</span> <span class="ident">test</span> <span class="op">-</span><span class="op">-</span><span class="ident">all</span></code></pre></div>
+</div></details><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.main.html" title="aoc::main fn">main</a></div><div class="item-right docblock-short"></div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="aoc" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>

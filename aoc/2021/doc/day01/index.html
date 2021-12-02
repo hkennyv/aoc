@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="— Day 1: Sonar Sweep —"><meta name="keywords" content="rust, rustlang, rust-lang, day01"><title>day01 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../day01/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate day01</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all day01's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#functions">Functions</a></li></ul></div><div id="sidebar-vars" data-name="day01" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">day01</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/day01/main.rs.html#1-153" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h3 id="-day-1-sonar-sweep-" class="section-header"><a href="#-day-1-sonar-sweep-">— Day 1: Sonar Sweep —</a></h3>
+<p>You’re minding your own business on a ship at sea when the overboard alarm goes off! You rush to see if you can help. Apparently, one of the Elves tripped and accidentally sent the sleigh keys flying into the ocean!</p>
+<p>Before you know it, you’re inside a submarine the Elves keep ready for situations like this. It’s covered in Christmas lights (because of course it is), and it even has an experimental antenna that should be able to track the keys if you can boost its signal strength high enough; there’s a little meter that indicates the antenna’s signal strength by displaying 0-50 stars.</p>
+<p>Your instincts tell you that in order to save Christmas, you’ll need to get all fifty stars by December 25th.</p>
+<p>Collect stars by solving puzzles. Two puzzles will be made available on each day in the Advent calendar; the second puzzle is unlocked when you complete the first. Each puzzle grants one star. Good luck!</p>
+<p>As the submarine drops below the surface of the ocean, it automatically performs a sonar sweep of the nearby sea floor. On a small screen, the sonar sweep report (your puzzle input) appears: each line is a measurement of the sea floor depth as the sweep looks further and further away from the submarine.</p>
+<p>For example, suppose you had the following report:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">199</span>
+<span class="number">200</span>
+<span class="number">208</span>
+<span class="number">210</span>
+<span class="number">200</span>
+<span class="number">207</span>
+<span class="number">240</span>
+<span class="number">269</span>
+<span class="number">260</span>
+<span class="number">263</span></code></pre></div>
+<p>This report indicates that, scanning outward from the submarine, the sonar sweep found depths of 199, 200, 208, 210, and so on.</p>
+<p>The first order of business is to figure out how quickly the depth increases, just so you know what you’re dealing with - you never know if the keys will get carried into deeper water by an ocean current or a fish or something.</p>
+<p>To do this, count the number of times a depth measurement increases from the previous measurement. (There is no measurement before the first measurement.) In the example above, the changes are as follows:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">199</span> (<span class="ident">N</span><span class="op">/</span><span class="ident">A</span> <span class="op">-</span> <span class="ident">no</span> <span class="ident">previous</span> <span class="ident">measurement</span>)
+<span class="number">200</span> (<span class="ident">increased</span>)
+<span class="number">208</span> (<span class="ident">increased</span>)
+<span class="number">210</span> (<span class="ident">increased</span>)
+<span class="number">200</span> (<span class="ident">decreased</span>)
+<span class="number">207</span> (<span class="ident">increased</span>)
+<span class="number">240</span> (<span class="ident">increased</span>)
+<span class="number">269</span> (<span class="ident">increased</span>)
+<span class="number">260</span> (<span class="ident">decreased</span>)
+<span class="number">263</span> (<span class="ident">increased</span>)</code></pre></div>
+<p>In this example, there are 7 measurements that are larger than the previous measurement.</p>
+<p>How many measurements are larger than the previous measurement?</p>
+<p>Your puzzle answer was 1288.</p>
+<h3 id="-part-two-" class="section-header"><a href="#-part-two-">— Part Two —</a></h3>
+<p>Considering every single measurement isn’t as useful as you expected: there’s just too much noise in the data.</p>
+<p>Instead, consider sums of a three-measurement sliding window. Again considering the above example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">199</span> <span class="ident">A</span>
+<span class="number">200</span> <span class="ident">A</span> <span class="ident">B</span>
+<span class="number">208</span> <span class="ident">A</span> <span class="ident">B</span> <span class="ident">C</span>
+<span class="number">210</span> <span class="ident">B</span> <span class="ident">C</span> <span class="ident">D</span>
+<span class="number">200</span> <span class="ident">E</span> <span class="ident">C</span> <span class="ident">D</span>
+<span class="number">207</span> <span class="ident">E</span> <span class="ident">F</span> <span class="ident">D</span>
+<span class="number">240</span> <span class="ident">E</span> <span class="ident">F</span> <span class="ident">G</span>
+<span class="number">269</span> <span class="ident">F</span> <span class="ident">G</span> <span class="ident">H</span>
+<span class="number">260</span> <span class="ident">G</span> <span class="ident">H</span>
+<span class="number">263</span> <span class="ident">H</span></code></pre></div>
+<p>Start by comparing the first and second three-measurement windows. The measurements in the first window are marked A (199, 200, 208); their sum is 199 + 200 + 208 = 607. The second window is marked B (200, 208, 210); its sum is 618. The sum of measurements in the second window is larger than the sum of the first, so this first comparison increased.</p>
+<p>Your goal now is to count the number of times the sum of measurements in this sliding window increases from the previous sum. So, compare A with B, then compare B with C, then C with D, and so on. Stop when there aren’t enough measurements left to create a new three-measurement sum.</p>
+<p>In the above example, the sum of each three-measurement window is as follows:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">A</span>: <span class="number">607</span> (<span class="ident">N</span><span class="op">/</span><span class="ident">A</span> <span class="op">-</span> <span class="ident">no</span> <span class="ident">previous</span> <span class="ident">sum</span>)
+<span class="ident">B</span>: <span class="number">618</span> (<span class="ident">increased</span>)
+<span class="ident">C</span>: <span class="number">618</span> (<span class="ident">no</span> <span class="ident">change</span>)
+<span class="ident">D</span>: <span class="number">617</span> (<span class="ident">decreased</span>)
+<span class="ident">E</span>: <span class="number">647</span> (<span class="ident">increased</span>)
+<span class="ident">F</span>: <span class="number">716</span> (<span class="ident">increased</span>)
+<span class="ident">G</span>: <span class="number">769</span> (<span class="ident">increased</span>)
+<span class="ident">H</span>: <span class="number">792</span> (<span class="ident">increased</span>)</code></pre></div>
+<p>In this example, there are 5 sums that are larger than the previous sum.</p>
+<p>Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?</p>
+<p>Your puzzle answer was 1311.</p>
+</div></details><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="fs/index.html" title="day01::fs mod">fs</a></div><div class="item-right docblock-short"><p>Filesystem manipulation operations.</p>
+</div></div></div><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.count_windowed_increases.html" title="day01::count_windowed_increases fn">count_windowed_increases</a></div><div class="item-right docblock-short"><p>Counts the number of increaeses given a list of measurements and a window
+size.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.count_windowed_increases_rolling.html" title="day01::count_windowed_increases_rolling fn">count_windowed_increases_rolling</a></div><div class="item-right docblock-short"><p>Counts the number of increaes given a list of measurements and a window
+size using a rolling calculation for the previous and current values</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.main.html" title="day01::main fn">main</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.read_input.html" title="day01::read_input fn">read_input</a></div><div class="item-right docblock-short"></div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="day01" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>

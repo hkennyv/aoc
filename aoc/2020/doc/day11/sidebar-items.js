@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["main",""],["part1","counts the number of seats using pt1 rules after the seating has converged"],["part2","counts the number of seats using pt2 rules after the seating has converged"]],"mod":[["fs","Filesystem manipulation operations."],["seating","Seating"]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["main",""],["parse_input","parses the input from a String to a Vec"],["part1","finds the first number that does not have 2 numbers in the preamble that adds up to the value immediately after the preamble"],["part2","returns the min plus the max of a set of contiguous numbers that adds up to the `res_p1`"]]});

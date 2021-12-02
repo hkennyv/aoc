@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["assert_indices_havent_crossed","utility function that helps to check index bounds"],["main","The main function prints out the results for part1 and part2 of the day01 AOC"],["part1","The part1 function calculates the result for part1"],["part2","The part2 function calculates the result for part2"]]});

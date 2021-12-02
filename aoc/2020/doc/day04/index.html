@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="— Day 4: Passport Processing —"><meta name="keywords" content="rust, rustlang, rust-lang, day04"><title>day04 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../day04/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate day04</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all day04's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></div><div id="sidebar-vars" data-name="day04" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">day04</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/day04/main.rs.html#1-181" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h3 id="-day-4-passport-processing-" class="section-header"><a href="#-day-4-passport-processing-">— Day 4: Passport Processing —</a></h3>
+<p>You arrive at the airport only to realize that you grabbed your North Pole Credentials instead of your passport. While these documents are extremely similar, North Pole Credentials aren’t issued by a country and therefore aren’t actually valid documentation for travel in most of the world.</p>
+<p>It seems like you’re not the only one having problems, though; a very long line has formed for the automatic passport scanners, and the delay could upset your travel itinerary.</p>
+<p>Due to some questionable network security, you realize you might be able to solve both of these problems at the same time.</p>
+<p>The automatic passport scanners are slow because they’re having trouble detecting which passports have all required fields. The expected fields are as follows:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">byr</span> (<span class="ident">Birth</span> <span class="ident">Year</span>)
+<span class="ident">iyr</span> (<span class="ident">Issue</span> <span class="ident">Year</span>)
+<span class="ident">eyr</span> (<span class="ident">Expiration</span> <span class="ident">Year</span>)
+<span class="ident">hgt</span> (<span class="ident">Height</span>)
+<span class="ident">hcl</span> (<span class="ident">Hair</span> <span class="ident">Color</span>)
+<span class="ident">ecl</span> (<span class="ident">Eye</span> <span class="ident">Color</span>)
+<span class="ident">pid</span> (<span class="ident">Passport</span> <span class="ident">ID</span>)
+<span class="ident">cid</span> (<span class="ident">Country</span> <span class="ident">ID</span>)</code></pre></div>
+<p>Passport data is validated in batch files (your puzzle input). Each passport is represented as a sequence of key:value pairs separated by spaces or newlines. Passports are separated by blank lines.</p>
+<p>Here is an example batch file containing four passports:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">ecl</span>:<span class="ident">gry</span> <span class="ident">pid</span>:<span class="number">860033327</span> <span class="ident">eyr</span>:<span class="number">2020</span> <span class="ident">hcl</span>:#<span class="ident">fffffd</span>
+<span class="ident">byr</span>:<span class="number">1937</span> <span class="ident">iyr</span>:<span class="number">2017</span> <span class="ident">cid</span>:<span class="number">147</span> <span class="ident">hgt</span>:<span class="number">183cm</span>
+
+<span class="ident">iyr</span>:<span class="number">2013</span> <span class="ident">ecl</span>:<span class="ident">amb</span> <span class="ident">cid</span>:<span class="number">350</span> <span class="ident">eyr</span>:<span class="number">2023</span> <span class="ident">pid</span>:<span class="number">028048884</span>
+<span class="ident">hcl</span>:#<span class="ident">cfa07d</span> <span class="ident">byr</span>:<span class="number">1929</span>
+
+<span class="ident">hcl</span>:#<span class="ident">ae17e1</span> <span class="ident">iyr</span>:<span class="number">2013</span>
+<span class="ident">eyr</span>:<span class="number">2024</span>
+<span class="ident">ecl</span>:<span class="ident">brn</span> <span class="ident">pid</span>:<span class="number">760753108</span> <span class="ident">byr</span>:<span class="number">1931</span>
+<span class="ident">hgt</span>:<span class="number">179cm</span>
+
+<span class="ident">hcl</span>:#<span class="ident">cfa07d</span> <span class="ident">eyr</span>:<span class="number">2025</span> <span class="ident">pid</span>:<span class="number">166559648</span>
+<span class="ident">iyr</span>:<span class="number">2011</span> <span class="ident">ecl</span>:<span class="ident">brn</span> <span class="ident">hgt</span>:<span class="number">59in</span></code></pre></div>
+<p>The first passport is valid - all eight fields are present. The second passport is invalid - it is missing hgt (the Height field).</p>
+<p>The third passport is interesting; the only missing field is cid, so it looks like data from North Pole Credentials, not a passport at all! Surely, nobody would mind if you made the system temporarily ignore missing cid fields. Treat this “passport” as valid.</p>
+<p>The fourth passport is missing two fields, cid and byr. Missing cid is fine, but missing any other field is not, so this passport is invalid.</p>
+<p>According to the above rules, your improved system would report 2 valid passports.</p>
+<p>Count the number of valid passports - those that have all required fields. Treat cid as optional. In your batch file, how many passports are valid?</p>
+<p>Your puzzle answer was 247.</p>
+<h3 id="-part-two-" class="section-header"><a href="#-part-two-">— Part Two —</a></h3>
+<p>The line is moving more quickly now, but you overhear airport security talking about how passports with invalid data are getting through. Better add some data validation, quick!</p>
+<p>You can continue to ignore the cid field, but each other field has strict rules about what values are valid for automatic validation:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">byr</span> (<span class="ident">Birth</span> <span class="ident">Year</span>) <span class="op">-</span> <span class="ident">four</span> <span class="ident">digits</span>; <span class="ident">at</span> <span class="ident">least</span> <span class="number">1920</span> <span class="ident">and</span> <span class="ident">at</span> <span class="ident">most</span> <span class="number">2002.</span>
+<span class="ident">iyr</span> (<span class="ident">Issue</span> <span class="ident">Year</span>) <span class="op">-</span> <span class="ident">four</span> <span class="ident">digits</span>; <span class="ident">at</span> <span class="ident">least</span> <span class="number">2010</span> <span class="ident">and</span> <span class="ident">at</span> <span class="ident">most</span> <span class="number">2020.</span>
+<span class="ident">eyr</span> (<span class="ident">Expiration</span> <span class="ident">Year</span>) <span class="op">-</span> <span class="ident">four</span> <span class="ident">digits</span>; <span class="ident">at</span> <span class="ident">least</span> <span class="number">2020</span> <span class="ident">and</span> <span class="ident">at</span> <span class="ident">most</span> <span class="number">2030.</span>
+<span class="ident">hgt</span> (<span class="ident">Height</span>) <span class="op">-</span> <span class="ident">a</span> <span class="ident">number</span> <span class="ident">followed</span> <span class="ident">by</span> <span class="ident">either</span> <span class="ident">cm</span> <span class="ident">or</span> <span class="kw">in</span>:
+<span class="ident">If</span> <span class="ident">cm</span>, <span class="ident">the</span> <span class="ident">number</span> <span class="ident">must</span> <span class="ident">be</span> <span class="ident">at</span> <span class="ident">least</span> <span class="number">150</span> <span class="ident">and</span> <span class="ident">at</span> <span class="ident">most</span> <span class="number">193.</span>
+<span class="ident">If</span> <span class="kw">in</span>, <span class="ident">the</span> <span class="ident">number</span> <span class="ident">must</span> <span class="ident">be</span> <span class="ident">at</span> <span class="ident">least</span> <span class="number">59</span> <span class="ident">and</span> <span class="ident">at</span> <span class="ident">most</span> <span class="number">76.</span>
+<span class="ident">hcl</span> (<span class="ident">Hair</span> <span class="ident">Color</span>) <span class="op">-</span> <span class="ident">a</span> # <span class="ident">followed</span> <span class="ident">by</span> <span class="ident">exactly</span> <span class="ident">six</span> <span class="ident">characters</span> <span class="number">0</span><span class="op">-</span><span class="number">9</span> <span class="ident">or</span> <span class="ident">a</span><span class="op">-</span><span class="ident">f</span>.
+<span class="ident">ecl</span> (<span class="ident">Eye</span> <span class="ident">Color</span>) <span class="op">-</span> <span class="ident">exactly</span> <span class="ident">one</span> <span class="ident">of</span>: <span class="ident">amb</span> <span class="ident">blu</span> <span class="ident">brn</span> <span class="ident">gry</span> <span class="ident">grn</span> <span class="ident">hzl</span> <span class="ident">oth</span>.
+<span class="ident">pid</span> (<span class="ident">Passport</span> <span class="ident">ID</span>) <span class="op">-</span> <span class="ident">a</span> <span class="ident">nine</span><span class="op">-</span><span class="ident">digit</span> <span class="ident">number</span>, <span class="ident">including</span> <span class="ident">leading</span> <span class="ident">zeroes</span>.
+<span class="ident">cid</span> (<span class="ident">Country</span> <span class="ident">ID</span>) <span class="op">-</span> <span class="ident">ignored</span>, <span class="ident">missing</span> <span class="ident">or</span> <span class="ident">not</span>.</code></pre></div>
+<p>Your job is to count the passports where all required fields are both present and valid according to the above rules. Here are some example values:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">byr</span> <span class="ident">valid</span>: <span class="number">2002</span>
+<span class="ident">byr</span> <span class="ident">invalid</span>: <span class="number">2003</span>
+
+<span class="ident">hgt</span> <span class="ident">valid</span>: <span class="number">60in</span>
+<span class="ident">hgt</span> <span class="ident">valid</span>: <span class="number">190cm</span>
+<span class="ident">hgt</span> <span class="ident">invalid</span>: <span class="number">190in</span>
+<span class="ident">hgt</span> <span class="ident">invalid</span>: <span class="number">190</span>
+
+<span class="ident">hcl</span> <span class="ident">valid</span>: #<span class="number">123abc</span>
+<span class="ident">hcl</span> <span class="ident">invalid</span>: #<span class="number">123abz</span>
+<span class="ident">hcl</span> <span class="ident">invalid</span>: <span class="number">123abc</span>
+
+<span class="ident">ecl</span> <span class="ident">valid</span>: <span class="ident">brn</span>
+<span class="ident">ecl</span> <span class="ident">invalid</span>: <span class="ident">wat</span>
+
+<span class="ident">pid</span> <span class="ident">valid</span>: <span class="number">000000001</span>
+<span class="ident">pid</span> <span class="ident">invalid</span>: <span class="number">0123456789</span></code></pre></div>
+<p>Here are some invalid passports:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">eyr</span>:<span class="number">1972</span> <span class="ident">cid</span>:<span class="number">100</span>
+<span class="ident">hcl</span>:#<span class="number">18171d</span> <span class="ident">ecl</span>:<span class="ident">amb</span> <span class="ident">hgt</span>:<span class="number">170</span> <span class="ident">pid</span>:<span class="number">186cm</span> <span class="ident">iyr</span>:<span class="number">2018</span> <span class="ident">byr</span>:<span class="number">1926</span>
+
+<span class="ident">iyr</span>:<span class="number">2019</span>
+<span class="ident">hcl</span>:#<span class="number">602927</span> <span class="ident">eyr</span>:<span class="number">1967</span> <span class="ident">hgt</span>:<span class="number">170cm</span>
+<span class="ident">ecl</span>:<span class="ident">grn</span> <span class="ident">pid</span>:<span class="number">012533040</span> <span class="ident">byr</span>:<span class="number">1946</span>
+
+<span class="ident">hcl</span>:<span class="ident">dab227</span> <span class="ident">iyr</span>:<span class="number">2012</span>
+<span class="ident">ecl</span>:<span class="ident">brn</span> <span class="ident">hgt</span>:<span class="number">182cm</span> <span class="ident">pid</span>:<span class="number">021572410</span> <span class="ident">eyr</span>:<span class="number">2020</span> <span class="ident">byr</span>:<span class="number">1992</span> <span class="ident">cid</span>:<span class="number">277</span>
+
+<span class="ident">hgt</span>:<span class="number">59cm</span> <span class="ident">ecl</span>:<span class="ident">zzz</span>
+<span class="ident">eyr</span>:<span class="number">2038</span> <span class="ident">hcl</span>:<span class="number">74454a</span> <span class="ident">iyr</span>:<span class="number">2023</span>
+<span class="ident">pid</span>:<span class="number">3556412378</span> <span class="ident">byr</span>:<span class="number">2007</span></code></pre></div>
+<p>Here are some valid passports:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">pid</span>:<span class="number">087499704</span> <span class="ident">hgt</span>:<span class="number">74in</span> <span class="ident">ecl</span>:<span class="ident">grn</span> <span class="ident">iyr</span>:<span class="number">2012</span> <span class="ident">eyr</span>:<span class="number">2030</span> <span class="ident">byr</span>:<span class="number">1980</span>
+<span class="ident">hcl</span>:#<span class="number">623a2f</span>
+
+<span class="ident">eyr</span>:<span class="number">2029</span> <span class="ident">ecl</span>:<span class="ident">blu</span> <span class="ident">cid</span>:<span class="number">129</span> <span class="ident">byr</span>:<span class="number">1989</span>
+<span class="ident">iyr</span>:<span class="number">2014</span> <span class="ident">pid</span>:<span class="number">896056539</span> <span class="ident">hcl</span>:#<span class="ident">a97842</span> <span class="ident">hgt</span>:<span class="number">165cm</span>
+
+<span class="ident">hcl</span>:#<span class="number">888785</span>
+<span class="ident">hgt</span>:<span class="number">164cm</span> <span class="ident">byr</span>:<span class="number">2001</span> <span class="ident">iyr</span>:<span class="number">2015</span> <span class="ident">cid</span>:<span class="number">88</span>
+<span class="ident">pid</span>:<span class="number">545766238</span> <span class="ident">ecl</span>:<span class="ident">hzl</span>
+<span class="ident">eyr</span>:<span class="number">2022</span>
+
+<span class="ident">iyr</span>:<span class="number">2010</span> <span class="ident">hgt</span>:<span class="number">158cm</span> <span class="ident">hcl</span>:#<span class="ident">b6652a</span> <span class="ident">ecl</span>:<span class="ident">blu</span> <span class="ident">byr</span>:<span class="number">1944</span> <span class="ident">eyr</span>:<span class="number">2021</span> <span class="ident">pid</span>:<span class="number">093154719</span></code></pre></div>
+<p>Count the number of valid passports - those that have all required fields and valid values. Continue to treat cid as optional. In your batch file, how many passports are valid?</p>
+<p>Your puzzle answer was 145.</p>
+</div></details><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="fs/index.html" title="day04::fs mod">fs</a></div><div class="item-right docblock-short"><p>Filesystem manipulation operations.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="passport/index.html" title="day04::passport mod">passport</a></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.HashMap.html" title="day04::HashMap struct">HashMap</a></div><div class="item-right docblock-short"><p>A <a href="https://doc.rust-lang.org/nightly/std/collections/index.html#use-a-hashmap-when">hash map</a> implemented with quadratic probing and SIMD lookup.</p>
+</div></div></div><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.main.html" title="day04::main fn">main</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.parse_passport.html" title="day04::parse_passport fn">parse_passport</a></div><div class="item-right docblock-short"><p>parses the key, value pairs from the passport string and returns a hashmap</p>
+</div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="day04" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>

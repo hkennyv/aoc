@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `day01&#x2F;src&#x2F;main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../day01/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<span id="2">  2</span>
+<span id="3">  3</span>
+<span id="4">  4</span>
+<span id="5">  5</span>
+<span id="6">  6</span>
+<span id="7">  7</span>
+<span id="8">  8</span>
+<span id="9">  9</span>
+<span id="10"> 10</span>
+<span id="11"> 11</span>
+<span id="12"> 12</span>
+<span id="13"> 13</span>
+<span id="14"> 14</span>
+<span id="15"> 15</span>
+<span id="16"> 16</span>
+<span id="17"> 17</span>
+<span id="18"> 18</span>
+<span id="19"> 19</span>
+<span id="20"> 20</span>
+<span id="21"> 21</span>
+<span id="22"> 22</span>
+<span id="23"> 23</span>
+<span id="24"> 24</span>
+<span id="25"> 25</span>
+<span id="26"> 26</span>
+<span id="27"> 27</span>
+<span id="28"> 28</span>
+<span id="29"> 29</span>
+<span id="30"> 30</span>
+<span id="31"> 31</span>
+<span id="32"> 32</span>
+<span id="33"> 33</span>
+<span id="34"> 34</span>
+<span id="35"> 35</span>
+<span id="36"> 36</span>
+<span id="37"> 37</span>
+<span id="38"> 38</span>
+<span id="39"> 39</span>
+<span id="40"> 40</span>
+<span id="41"> 41</span>
+<span id="42"> 42</span>
+<span id="43"> 43</span>
+<span id="44"> 44</span>
+<span id="45"> 45</span>
+<span id="46"> 46</span>
+<span id="47"> 47</span>
+<span id="48"> 48</span>
+<span id="49"> 49</span>
+<span id="50"> 50</span>
+<span id="51"> 51</span>
+<span id="52"> 52</span>
+<span id="53"> 53</span>
+<span id="54"> 54</span>
+<span id="55"> 55</span>
+<span id="56"> 56</span>
+<span id="57"> 57</span>
+<span id="58"> 58</span>
+<span id="59"> 59</span>
+<span id="60"> 60</span>
+<span id="61"> 61</span>
+<span id="62"> 62</span>
+<span id="63"> 63</span>
+<span id="64"> 64</span>
+<span id="65"> 65</span>
+<span id="66"> 66</span>
+<span id="67"> 67</span>
+<span id="68"> 68</span>
+<span id="69"> 69</span>
+<span id="70"> 70</span>
+<span id="71"> 71</span>
+<span id="72"> 72</span>
+<span id="73"> 73</span>
+<span id="74"> 74</span>
+<span id="75"> 75</span>
+<span id="76"> 76</span>
+<span id="77"> 77</span>
+<span id="78"> 78</span>
+<span id="79"> 79</span>
+<span id="80"> 80</span>
+<span id="81"> 81</span>
+<span id="82"> 82</span>
+<span id="83"> 83</span>
+<span id="84"> 84</span>
+<span id="85"> 85</span>
+<span id="86"> 86</span>
+<span id="87"> 87</span>
+<span id="88"> 88</span>
+<span id="89"> 89</span>
+<span id="90"> 90</span>
+<span id="91"> 91</span>
+<span id="92"> 92</span>
+<span id="93"> 93</span>
+<span id="94"> 94</span>
+<span id="95"> 95</span>
+<span id="96"> 96</span>
+<span id="97"> 97</span>
+<span id="98"> 98</span>
+<span id="99"> 99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;day01&quot;</span>]</span>
+
+<span class="doccomment">//! ## --- Day 1: Sonar Sweep ---</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! You&#39;re minding your own business on a ship at sea when the overboard alarm goes off! You rush to see if you can help. Apparently, one of the Elves tripped and accidentally sent the sleigh keys flying into the ocean!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Before you know it, you&#39;re inside a submarine the Elves keep ready for situations like this. It&#39;s covered in Christmas lights (because of course it is), and it even has an experimental antenna that should be able to track the keys if you can boost its signal strength high enough; there&#39;s a little meter that indicates the antenna&#39;s signal strength by displaying 0-50 stars.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Your instincts tell you that in order to save Christmas, you&#39;ll need to get all fifty stars by December 25th.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Collect stars by solving puzzles. Two puzzles will be made available on each day in the Advent calendar; the second puzzle is unlocked when you complete the first. Each puzzle grants one star. Good luck!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! As the submarine drops below the surface of the ocean, it automatically performs a sonar sweep of the nearby sea floor. On a small screen, the sonar sweep report (your puzzle input) appears: each line is a measurement of the sea floor depth as the sweep looks further and further away from the submarine.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! For example, suppose you had the following report:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! 199</span>
+<span class="doccomment">//! 200</span>
+<span class="doccomment">//! 208</span>
+<span class="doccomment">//! 210</span>
+<span class="doccomment">//! 200</span>
+<span class="doccomment">//! 207</span>
+<span class="doccomment">//! 240</span>
+<span class="doccomment">//! 269</span>
+<span class="doccomment">//! 260</span>
+<span class="doccomment">//! 263</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! This report indicates that, scanning outward from the submarine, the sonar sweep found depths of 199, 200, 208, 210, and so on.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The first order of business is to figure out how quickly the depth increases, just so you know what you&#39;re dealing with - you never know if the keys will get carried into deeper water by an ocean current or a fish or something.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! To do this, count the number of times a depth measurement increases from the previous measurement. (There is no measurement before the first measurement.) In the example above, the changes are as follows:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! 199 (N/A - no previous measurement)</span>
+<span class="doccomment">//! 200 (increased)</span>
+<span class="doccomment">//! 208 (increased)</span>
+<span class="doccomment">//! 210 (increased)</span>
+<span class="doccomment">//! 200 (decreased)</span>
+<span class="doccomment">//! 207 (increased)</span>
+<span class="doccomment">//! 240 (increased)</span>
+<span class="doccomment">//! 269 (increased)</span>
+<span class="doccomment">//! 260 (decreased)</span>
+<span class="doccomment">//! 263 (increased)</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! In this example, there are 7 measurements that are larger than the previous measurement.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! How many measurements are larger than the previous measurement?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Your puzzle answer was 1288.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## --- Part Two ---</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Considering every single measurement isn&#39;t as useful as you expected: there&#39;s just too much noise in the data.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Instead, consider sums of a three-measurement sliding window. Again considering the above example:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! 199 A</span>
+<span class="doccomment">//! 200 A B</span>
+<span class="doccomment">//! 208 A B C</span>
+<span class="doccomment">//! 210 B C D</span>
+<span class="doccomment">//! 200 E C D</span>
+<span class="doccomment">//! 207 E F D</span>
+<span class="doccomment">//! 240 E F G</span>
+<span class="doccomment">//! 269 F G H</span>
+<span class="doccomment">//! 260 G H</span>
+<span class="doccomment">//! 263 H</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Start by comparing the first and second three-measurement windows. The measurements in the first window are marked A (199, 200, 208); their sum is 199 + 200 + 208 = 607. The second window is marked B (200, 208, 210); its sum is 618. The sum of measurements in the second window is larger than the sum of the first, so this first comparison increased.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Your goal now is to count the number of times the sum of measurements in this sliding window increases from the previous sum. So, compare A with B, then compare B with C, then C with D, and so on. Stop when there aren&#39;t enough measurements left to create a new three-measurement sum.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! In the above example, the sum of each three-measurement window is as follows:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! A: 607 (N/A - no previous sum)</span>
+<span class="doccomment">//! B: 618 (increased)</span>
+<span class="doccomment">//! C: 618 (no change)</span>
+<span class="doccomment">//! D: 617 (decreased)</span>
+<span class="doccomment">//! E: 647 (increased)</span>
+<span class="doccomment">//! F: 716 (increased)</span>
+<span class="doccomment">//! G: 769 (increased)</span>
+<span class="doccomment">//! H: 792 (increased)</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! In this example, there are 5 sums that are larger than the previous sum.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Your puzzle answer was 1311.</span>
+
+<span class="kw">use</span> <span class="ident">std::fs</span>;
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">measurements</span> <span class="op">=</span> <span class="ident">read_input</span>(<span class="string">&quot;input.txt&quot;</span>);
+
+    <span class="kw">let</span> <span class="ident">part1</span> <span class="op">=</span> <span class="ident">count_windowed_increases</span>(<span class="kw-2">&amp;</span><span class="ident">measurements</span>, <span class="number">1</span>);
+    <span class="kw">let</span> <span class="ident">part2</span> <span class="op">=</span> <span class="ident">count_windowed_increases</span>(<span class="kw-2">&amp;</span><span class="ident">measurements</span>, <span class="number">3</span>);
+
+    <span class="macro">println!</span>(<span class="string">&quot;Part1: {}&quot;</span>, <span class="ident">part1</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;Part2: {}&quot;</span>, <span class="ident">part2</span>);
+}
+
+<span class="doccomment">/// Counts the number of increaeses given a list of measurements and a window</span>
+<span class="doccomment">/// size.</span>
+<span class="kw">fn</span> <span class="ident">count_windowed_increases</span>(<span class="ident">measurements</span>: <span class="kw-2">&amp;</span>[<span class="ident">usize</span>], <span class="ident">window_size</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">increases</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">window_size</span>..<span class="ident">measurements</span>.<span class="ident">len</span>() {
+        <span class="kw">let</span> <span class="ident">prev</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">measurements</span>[<span class="ident">i</span> <span class="op">-</span> <span class="ident">window_size</span>..<span class="ident">i</span>].<span class="ident">iter</span>().<span class="ident">sum</span>();
+        <span class="kw">let</span> <span class="ident">current</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">measurements</span>[<span class="ident">i</span> <span class="op">-</span> <span class="ident">window_size</span> <span class="op">+</span> <span class="number">1</span>..<span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>].<span class="ident">iter</span>().<span class="ident">sum</span>();
+
+        <span class="kw">if</span> <span class="ident">current</span> <span class="op">&gt;</span> <span class="ident">prev</span> {
+            <span class="ident">increases</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        }
+    }
+
+    <span class="ident">increases</span>
+}
+
+<span class="doccomment">/// Counts the number of increaes given a list of measurements and a window</span>
+<span class="doccomment">/// size using a rolling calculation for the previous and current values</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">fn</span> <span class="ident">count_windowed_increases_rolling</span>(<span class="ident">measurements</span>: <span class="kw-2">&amp;</span>[<span class="ident">usize</span>], <span class="ident">window_size</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">increases</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">prev</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">measurements</span>[<span class="number">0</span>..<span class="ident">window_size</span>].<span class="ident">iter</span>().<span class="ident">sum</span>();
+
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">window_size</span>..<span class="ident">measurements</span>.<span class="ident">len</span>() {
+        <span class="kw">let</span> <span class="ident">current</span> <span class="op">=</span> <span class="ident">prev</span> <span class="op">-</span> <span class="ident">measurements</span>[<span class="ident">i</span> <span class="op">-</span> <span class="ident">window_size</span>] <span class="op">+</span> <span class="ident">measurements</span>[<span class="ident">i</span>];
+
+        <span class="kw">if</span> <span class="ident">current</span> <span class="op">&gt;</span> <span class="ident">prev</span> {
+            <span class="ident">increases</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        }
+
+        <span class="ident">prev</span> <span class="op">=</span> <span class="ident">current</span>;
+    }
+
+    <span class="ident">increases</span>
+}
+
+<span class="kw">fn</span> <span class="ident">read_input</span>(<span class="ident">filename</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    <span class="ident">fs::read_to_string</span>(<span class="ident">filename</span>)
+        .<span class="ident">expect</span>(<span class="string">&quot;failed to read file&quot;</span>)
+        .<span class="ident">lines</span>()
+        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">|</span> <span class="ident">line</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>().<span class="ident">expect</span>(<span class="string">&quot;cannot parse a usize&quot;</span>))
+        .<span class="ident">collect</span>()
+}
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="day01" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["main",""],["parse_input",""],["parse_input2","parses the input and returns a vector with the bus_ids, replaces 'x' with 0's"],["part1",""],["part2",""]]});

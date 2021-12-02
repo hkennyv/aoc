@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["main",""],["parse_input",""],["part1",""],["part2",""],["print_matrix",""],["solve_matrix",""],["ticket_is_valid",""],["ticket_num_is_valid",""]],"type":[["Rule",""],["Rules",""]]});

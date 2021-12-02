@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["count_questions_from_anyone","sum the count of the number of questions to which anyone answered yes for each group"],["count_questions_from_everyone","sum the count of the number of questions to which everyone answered yes to in each group"],["main",""]]});

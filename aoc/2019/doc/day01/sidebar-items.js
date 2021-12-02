@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_fuel_requirement1",""],["get_fuel_requirement2",""],["main",""],["part1",""],["part2",""],["read_input",""]],"mod":[["fs","Filesystem manipulation operations."]]});

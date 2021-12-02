@@ -15,7 +15,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: 1.51.0
+          toolchain: nightly-2021-11-17
           override: true
       - name: build docs for entire workspace
         run: ./scripts/docs.sh

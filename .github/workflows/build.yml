@@ -6,6 +6,9 @@ jobs:
   check:
     name: Check
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        year: [2019, 2020, 2021]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -13,26 +16,31 @@ jobs:
           profile: minimal
           toolchain: nightly
           override: true
-      - uses: actions-rs/cargo@v1
+      - name: cargo check ${{ matrix.year }}
+        uses: actions-rs/cargo@v1
         with:
           command: check
           # gh-actions 'working-directory' isn't implemented for this action
           # https://github.com/actions-rs/cargo/issues/86#issuecomment-667088617
-          args: --all --manifest-path ./2020/Cargo.toml
+          args: --all --manifest-path ./${{ matrix.year }}/Cargo.toml
 
   build:
     name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        year: [2019, 2020, 2021]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           override: true
-      - uses: actions-rs/cargo@v1
+      - name: cargo build ${{ matrix.year }}
+        uses: actions-rs/cargo@v1
         with:
           command: build
           # gh-actions 'working-directory' isn't implemented for this action
           # https://github.com/actions-rs/cargo/issues/86#issuecomment-667088617
-          args: --all --manifest-path ./2020/Cargo.toml
+          args: --all --manifest-path ./${{ matrix.year }}/Cargo.toml

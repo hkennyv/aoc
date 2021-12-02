@@ -6,6 +6,9 @@ jobs:
   fmt:
     name: Rustfmt
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        year: [2019, 2020, 2021]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -14,9 +17,10 @@ jobs:
           toolchain: stable
           override: true
       - run: rustup component add rustfmt
-      - uses: actions-rs/cargo@v1
+      - name: cargo fmt ${{ matrix.year }}
+        uses: actions-rs/cargo@v1
         with:
           command: fmt
           # gh-actions 'working-directory' isn't implemented for this action
           # https://github.com/actions-rs/cargo/issues/86#issuecomment-667088617
-          args: --all --manifest-path ./2020/Cargo.toml -- --check
+          args: --all --manifest-path ./${{ matrix.year }}/Cargo.toml -- --check

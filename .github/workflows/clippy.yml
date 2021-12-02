@@ -6,6 +6,9 @@ jobs:
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        year: [2019, 2020, 2021]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -14,9 +17,10 @@ jobs:
           toolchain: nightly
           override: true
       - run: rustup component add clippy
-      - uses: actions-rs/cargo@v1
+      - name: cargo clippy ${{ matrix.year }}
+        uses: actions-rs/cargo@v1
         with:
           command: clippy
           # gh-actions 'working-directory' isn't implemented for this action
           # https://github.com/actions-rs/cargo/issues/86#issuecomment-667088617
-          args: --all --manifest-path ./2020/Cargo.toml -- -D warnings
+          args: --all --manifest-path ./${{ matrix.year }}/Cargo.toml -- -D warnings

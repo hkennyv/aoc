@@ -133,10 +133,26 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>};
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+</pre><pre class="rust"><code><span class="doccomment">//! This is the board module. It contains helper structs and methods for</span>
+<span class="doccomment">//! modeling a bingo board.</span>
 
+<span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>};
+
+<span class="doccomment">/// A coordinate on a bingo board, cannot be negative. (0, 0) is the top left</span>
+<span class="doccomment">/// and (M, N) is the bottom right.</span>
 <span class="kw">type</span> <span class="ident">Coordinate</span> <span class="op">=</span> (<span class="ident">usize</span>, <span class="ident">usize</span>);
 
+<span class="doccomment">/// A bingo board that contains a hashmap of the cell numbers to the</span>
+<span class="doccomment">/// coordinates, a set of marked coordinates, and a boolean flag indicating</span>
+<span class="doccomment">/// if the board has a bingo.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Board</span> {
     <span class="doccomment">/// The number on the board mapped to the coordinate location. For these</span>

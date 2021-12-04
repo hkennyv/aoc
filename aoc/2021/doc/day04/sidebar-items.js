@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["main",""],["part1",""],["part2",""],["read_input",""]],"mod":[["board",""],["fs","Filesystem manipulation operations."]]});
+initSidebarItems({"fn":[["main",""],["part1",""],["part2",""],["read_input",""]],"mod":[["board","This is the board module. It contains helper structs and methods for modeling a bingo board."],["fs","Filesystem manipulation operations."]]});

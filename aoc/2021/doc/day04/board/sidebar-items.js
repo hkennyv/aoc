@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Board",""]],"type":[["Coordinate",""]]});
+initSidebarItems({"struct":[["Board","A bingo board that contains a hashmap of the cell numbers to the coordinates, a set of marked coordinates, and a boolean flag indicating if the board has a bingo."]],"type":[["Coordinate","A coordinate on a bingo board, cannot be negative. (0, 0) is the top left and (M, N) is the bottom right."]]});

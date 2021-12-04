@@ -88,18 +88,18 @@ mod board;
 use board::Board;
 
 fn main() {
-    let (guesses, mut boards) = read_input("input.txt");
+    let (numbers, mut boards) = read_input("input.txt");
     let mut boards2 = boards.clone();
 
-    let part1 = part1(&guesses, &mut boards);
-    let part2 = part2(&guesses, &mut boards2);
+    let part1 = part1(&numbers, &mut boards);
+    let part2 = part2(&numbers, &mut boards2);
 
     println!("part1: {}", part1);
     println!("part2: {}", part2);
 }
 
-fn part1(guesses: &[usize], boards: &mut [Board]) -> usize {
-    for &guess in guesses {
+fn part1(numbers: &[usize], boards: &mut [Board]) -> usize {
+    for &guess in numbers {
         for board in boards.iter_mut() {
             board.mark_cell(guess);
 
@@ -119,11 +119,11 @@ fn part1(guesses: &[usize], boards: &mut [Board]) -> usize {
     unreachable!()
 }
 
-fn part2(guesses: &[usize], boards: &mut [Board]) -> usize {
+fn part2(numbers: &[usize], boards: &mut [Board]) -> usize {
     let mut last_bingo_idx: usize = 0;
     let mut last_guess: usize = 0;
 
-    for &guess in guesses {
+    for &guess in numbers {
         for (idx, board) in boards.iter_mut().enumerate() {
             if !board.has_bingo {
                 board.mark_cell(guess);
@@ -152,7 +152,7 @@ fn read_input(filename: &str) -> (Vec<usize>, Vec<Board>) {
     let input = fs::read_to_string(filename).expect("Something went wrong reading the file");
     let mut groups = input.split("\n\n");
 
-    let guesses: Vec<usize> = groups
+    let numbers: Vec<usize> = groups
         .next()
         .unwrap()
         .split(',')
@@ -161,5 +161,5 @@ fn read_input(filename: &str) -> (Vec<usize>, Vec<Board>) {
 
     let boards = groups.map(Board::from_string).collect();
 
-    (guesses, boards)
+    (numbers, boards)
 }

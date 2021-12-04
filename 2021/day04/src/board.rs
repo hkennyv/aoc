@@ -1,7 +1,15 @@
+//! This is the board module. It contains helper structs and methods for
+//! modeling a bingo board.
+
 use std::collections::{HashMap, HashSet};
 
+/// A coordinate on a bingo board, cannot be negative. (0, 0) is the top left
+/// and (M, N) is the bottom right.
 type Coordinate = (usize, usize);
 
+/// A bingo board that contains a hashmap of the cell numbers to the
+/// coordinates, a set of marked coordinates, and a boolean flag indicating
+/// if the board has a bingo.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Board {
     /// The number on the board mapped to the coordinate location. For these

@@ -87,14 +87,15 @@ impl Board {
             }
         }
 
-        // check diagonals
-        if (0..5).all(|i| marked_cells.contains(&(i, i))) {
-            return true;
-        }
+        // NOTE: TIL - diagonals don't count!
+        // // check diagonals
+        // if (0..5).all(|i| marked_cells.contains(&(i, i))) {
+        //     return true;
+        // }
 
-        if (0..5).all(|i| marked_cells.contains(&(i, 4 - i))) {
-            return true;
-        }
+        // if (0..5).all(|i| marked_cells.contains(&(i, 4 - i))) {
+        //     return true;
+        // }
 
         false
     }

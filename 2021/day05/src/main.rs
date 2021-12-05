@@ -95,7 +95,7 @@ fn main() {
 }
 
 fn count_overlaps(lines: &[Line], include_diagonals: bool) -> usize {
-    let mut points: HashMap<(usize, usize), usize> = HashMap::new();
+    let mut points: HashMap<Coordinate, usize> = HashMap::new();
 
     for (start, end) in lines {
         // horizontal line

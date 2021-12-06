@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["main",""],["read_input",""],["simulate",""],["simulate_naive",""]],"mod":[["fs","Filesystem manipulation operations."]]});

@@ -85,7 +85,7 @@ fn part1(nums: &[usize]) -> usize {
     let mode = mode(nums);
     let median = median(nums);
 
-    mode.iter().fold(0, |mut acc, (&num, &count)| {
+    mode.iter().fold(0, |acc, (&num, &count)| {
         if num == median {
             acc
         } else {
@@ -108,10 +108,9 @@ fn part2(nums: &[usize]) -> usize {
             fuel += ((diff * diff) + diff) / 2
         }
 
-        match fuel.partial_cmp(&min) {
-            Some(std::cmp::Ordering::Less) => min = fuel,
-            _ => {}
-        }
+        if let Some(std::cmp::Ordering::Less) = fuel.partial_cmp(&min) {
+            min = fuel
+        };
     }
 
     min
@@ -138,7 +137,7 @@ fn mode(nums: &[usize]) -> HashMap<usize, usize> {
 
 fn median(nums: &[usize]) -> usize {
     let mut nums = nums.to_vec();
-    nums.sort();
+    nums.sort_unstable();
     nums[nums.len() / 2]
 }
 

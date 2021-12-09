@@ -123,6 +123,8 @@ fn get_reading(numbers: &[usize], bit_pos: usize, most_common: bool) -> usize {
 
     let one_bits = numbers.iter().filter(|&n| (n & (1 << bit_pos)) > 0).count();
     let zero_bits = len - one_bits;
+
+    #[allow(clippy::needless_late_init)]
     let keep_bit: usize;
 
     if most_common {

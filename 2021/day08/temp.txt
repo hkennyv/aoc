@@ -1,0 +1,63 @@
+acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
+   8      5                7                  4          1                            
+
+ dddd
+e    a
+e    a
+ ffff
+g    b
+g    b
+ cccc
+
+
+1: 2
+7: 3
+4: 4
+2: 5
+3: 5
+5: 5
+0: 6
+6: 6
+9: 6
+8: 7
+
+get 1, 4, 7, 8
+
+get top row from 1, 7
+5 will have 2/3 in 7 -> fill in bottom right
+1 has the top right
+5 - found - 4 = bottom
+3 has the middle
+5 has the top right
+8 has the bottom left
+
+letter frequencies from example
+
+a: 8
+b: 6
+c: 8
+d: 7
+e: 4
+f: 9
+g: 7
+
+// 0
+8 + 6 + 8 +4 + 9 + 7 = 42
+// 1
+8 + 9 = 17
+// 2
+8 + 8 + 7 + 4 + 7 = 34
+// 3
+8 + 8 + 7 + 9 + 7 = 39
+// 4
+6 + 8 + 7 + 9 = 30
+// 5
+8 + 6 + 7 + 9 + 7 = 37
+// 6
+8 + 6 + 7 + 4 + 9 + 7 = 41
+// 7
+8 + 8 + 9 = 25
+// 8
+8 + 6 + 8 + 7 + 4 + 9 + 7 = 49
+// 9
+8 + 6 + 8 + 7 + 9 + 7 = 45

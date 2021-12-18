@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="— Day 8: Seven Segment Search —"><meta name="keywords" content="rust, rustlang, rust-lang, day08"><title>day08 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../day08/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate day08</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all day08's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></div><div id="sidebar-vars" data-name="day08" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">day08</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/day08/main.rs.html#1-341" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h3 id="-day-8-seven-segment-search-" class="section-header"><a href="#-day-8-seven-segment-search-">— Day 8: Seven Segment Search —</a></h3>
+<p>You barely reach the safety of the cave when the whale smashes into the cave mouth, collapsing it. Sensors indicate another exit to this cave at a much greater depth, so you have no choice but to press on.</p>
+<p>As your submarine slowly makes its way through the cave system, you notice that the four-digit seven-segment displays in your submarine are malfunctioning; they must have been damaged during the escape. You’ll be in a lot of trouble without them, so you’d better figure out what’s wrong.</p>
+<p>Each digit of a seven-segment display is rendered by turning on or off any of seven segments named a through g:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>  <span class="number">0</span>:      <span class="number">1</span>:      <span class="number">2</span>:      <span class="number">3</span>:      <span class="number">4</span>:
+ <span class="ident">aaaa</span>    ....    <span class="ident">aaaa</span>    <span class="ident">aaaa</span>    ....
+<span class="ident">b</span>    <span class="ident">c</span>  .    <span class="ident">c</span>  .    <span class="ident">c</span>  .    <span class="ident">c</span>  <span class="ident">b</span>    <span class="ident">c</span>
+<span class="ident">b</span>    <span class="ident">c</span>  .    <span class="ident">c</span>  .    <span class="ident">c</span>  .    <span class="ident">c</span>  <span class="ident">b</span>    <span class="ident">c</span>
+ ....    ....    <span class="ident">dddd</span>    <span class="ident">dddd</span>    <span class="ident">dddd</span>
+<span class="ident">e</span>    <span class="ident">f</span>  .    <span class="ident">f</span>  <span class="ident">e</span>    .  .    <span class="ident">f</span>  .    <span class="ident">f</span>
+<span class="ident">e</span>    <span class="ident">f</span>  .    <span class="ident">f</span>  <span class="ident">e</span>    .  .    <span class="ident">f</span>  .    <span class="ident">f</span>
+ <span class="ident">gggg</span>    ....    <span class="ident">gggg</span>    <span class="ident">gggg</span>    ....
+
+  <span class="number">5</span>:      <span class="number">6</span>:      <span class="number">7</span>:      <span class="number">8</span>:      <span class="number">9</span>:
+ <span class="ident">aaaa</span>    <span class="ident">aaaa</span>    <span class="ident">aaaa</span>    <span class="ident">aaaa</span>    <span class="ident">aaaa</span>
+<span class="ident">b</span>    .  <span class="ident">b</span>    .  .    <span class="ident">c</span>  <span class="ident">b</span>    <span class="ident">c</span>  <span class="ident">b</span>    <span class="ident">c</span>
+<span class="ident">b</span>    .  <span class="ident">b</span>    .  .    <span class="ident">c</span>  <span class="ident">b</span>    <span class="ident">c</span>  <span class="ident">b</span>    <span class="ident">c</span>
+ <span class="ident">dddd</span>    <span class="ident">dddd</span>    ....    <span class="ident">dddd</span>    <span class="ident">dddd</span>
+.    <span class="ident">f</span>  <span class="ident">e</span>    <span class="ident">f</span>  .    <span class="ident">f</span>  <span class="ident">e</span>    <span class="ident">f</span>  .    <span class="ident">f</span>
+.    <span class="ident">f</span>  <span class="ident">e</span>    <span class="ident">f</span>  .    <span class="ident">f</span>  <span class="ident">e</span>    <span class="ident">f</span>  .    <span class="ident">f</span>
+ <span class="ident">gggg</span>    <span class="ident">gggg</span>    ....    <span class="ident">gggg</span>    <span class="ident">gggg</span></code></pre></div>
+<p>So, to render a 1, only segments c and f would be turned on; the rest would be off. To render a 7, only segments a, c, and f would be turned on.</p>
+<p>The problem is that the signals which control the segments have been mixed up on each display. The submarine is still trying to display numbers by producing output on signal wires a through g, but those wires are connected to segments randomly. Worse, the wire/segment connections are mixed up separately for each four-digit display! (All of the digits within a display use the same connections, though.)</p>
+<p>So, you might know that only signal wires b and g are turned on, but that doesn’t mean segments b and g are turned on: the only digit that uses two segments is 1, so it must mean segments c and f are meant to be on. With just that information, you still can’t tell which wire (b/g) goes to which segment (c/f). For that, you’ll need to collect more information.</p>
+<p>For each display, you watch the changing signals for a while, make a note of all ten unique signal patterns you see, and then write down a single four digit output value (your puzzle input). Using the signal patterns, you should be able to work out which pattern corresponds to which digit.</p>
+<p>For example, here is what you might see in a single entry in your notes:</p>
+<p>acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab |
+cdfeb fcadb cdfeb cdbaf
+(The entry is wrapped here to two lines so it fits; in your notes, it will all be on a single line.)</p>
+<p>Each entry consists of ten unique signal patterns, a | delimiter, and finally the four digit output value. Within an entry, the same wire/segment connections are used (but you don’t know what the connections actually are). The unique signal patterns correspond to the ten different ways the submarine tries to render a digit using the current wire/segment connections. Because 7 is the only digit that uses three segments, dab in the above example means that to render a 7, signal lines d, a, and b are on. Because 4 is the only digit that uses four segments, eafb means that to render a 4, signal lines e, a, f, and b are on.</p>
+<p>Using this information, you should be able to work out which combination of signal wires corresponds to each of the ten digits. Then, you can decode the four digit output value. Unfortunately, in the above example, all of the digits in the output value (cdfeb fcadb cdfeb cdbaf) use five segments and are more difficult to deduce.</p>
+<p>For now, focus on the easy digits. Consider this larger example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">be</span> <span class="ident">cfbegad</span> <span class="ident">cbdgef</span> <span class="ident">fgaecd</span> <span class="ident">cgeb</span> <span class="ident">fdcge</span> <span class="ident">agebfd</span> <span class="ident">fecdb</span> <span class="ident">fabcd</span> <span class="ident">edb</span> <span class="op">|</span>
+<span class="ident">fdgacbe</span> <span class="ident">cefdb</span> <span class="ident">cefbgd</span> <span class="ident">gcbe</span>
+<span class="ident">edbfga</span> <span class="ident">begcd</span> <span class="ident">cbg</span> <span class="ident">gc</span> <span class="ident">gcadebf</span> <span class="ident">fbgde</span> <span class="ident">acbgfd</span> <span class="ident">abcde</span> <span class="ident">gfcbed</span> <span class="ident">gfec</span> <span class="op">|</span>
+<span class="ident">fcgedb</span> <span class="ident">cgb</span> <span class="ident">dgebacf</span> <span class="ident">gc</span>
+<span class="ident">fgaebd</span> <span class="ident">cg</span> <span class="ident">bdaec</span> <span class="ident">gdafb</span> <span class="ident">agbcfd</span> <span class="ident">gdcbef</span> <span class="ident">bgcad</span> <span class="ident">gfac</span> <span class="ident">gcb</span> <span class="ident">cdgabef</span> <span class="op">|</span>
+<span class="ident">cg</span> <span class="ident">cg</span> <span class="ident">fdcagb</span> <span class="ident">cbg</span>
+<span class="ident">fbegcd</span> <span class="ident">cbd</span> <span class="ident">adcefb</span> <span class="ident">dageb</span> <span class="ident">afcb</span> <span class="ident">bc</span> <span class="ident">aefdc</span> <span class="ident">ecdab</span> <span class="ident">fgdeca</span> <span class="ident">fcdbega</span> <span class="op">|</span>
+<span class="ident">efabcd</span> <span class="ident">cedba</span> <span class="ident">gadfec</span> <span class="ident">cb</span>
+<span class="ident">aecbfdg</span> <span class="ident">fbg</span> <span class="ident">gf</span> <span class="ident">bafeg</span> <span class="ident">dbefa</span> <span class="ident">fcge</span> <span class="ident">gcbea</span> <span class="ident">fcaegb</span> <span class="ident">dgceab</span> <span class="ident">fcbdga</span> <span class="op">|</span>
+<span class="ident">gecf</span> <span class="ident">egdcabf</span> <span class="ident">bgf</span> <span class="ident">bfgea</span>
+<span class="ident">fgeab</span> <span class="ident">ca</span> <span class="ident">afcebg</span> <span class="ident">bdacfeg</span> <span class="ident">cfaedg</span> <span class="ident">gcfdb</span> <span class="ident">baec</span> <span class="ident">bfadeg</span> <span class="ident">bafgc</span> <span class="ident">acf</span> <span class="op">|</span>
+<span class="ident">gebdcfa</span> <span class="ident">ecba</span> <span class="ident">ca</span> <span class="ident">fadegcb</span>
+<span class="ident">dbcfg</span> <span class="ident">fgd</span> <span class="ident">bdegcaf</span> <span class="ident">fgec</span> <span class="ident">aegbdf</span> <span class="ident">ecdfab</span> <span class="ident">fbedc</span> <span class="ident">dacgb</span> <span class="ident">gdcebf</span> <span class="ident">gf</span> <span class="op">|</span>
+<span class="ident">cefg</span> <span class="ident">dcbef</span> <span class="ident">fcge</span> <span class="ident">gbcadfe</span>
+<span class="ident">bdfegc</span> <span class="ident">cbegaf</span> <span class="ident">gecbf</span> <span class="ident">dfcage</span> <span class="ident">bdacg</span> <span class="ident">ed</span> <span class="ident">bedf</span> <span class="ident">ced</span> <span class="ident">adcbefg</span> <span class="ident">gebcd</span> <span class="op">|</span>
+<span class="ident">ed</span> <span class="ident">bcgafe</span> <span class="ident">cdgba</span> <span class="ident">cbgef</span>
+<span class="ident">egadfb</span> <span class="ident">cdbfeg</span> <span class="ident">cegd</span> <span class="ident">fecab</span> <span class="ident">cgb</span> <span class="ident">gbdefca</span> <span class="ident">cg</span> <span class="ident">fgcdab</span> <span class="ident">egfdb</span> <span class="ident">bfceg</span> <span class="op">|</span>
+<span class="ident">gbdfcae</span> <span class="ident">bgc</span> <span class="ident">cg</span> <span class="ident">cgb</span>
+<span class="ident">gcafb</span> <span class="ident">gcf</span> <span class="ident">dcaebfg</span> <span class="ident">ecagb</span> <span class="ident">gf</span> <span class="ident">abcdeg</span> <span class="ident">gaef</span> <span class="ident">cafbge</span> <span class="ident">fdbac</span> <span class="ident">fegbdc</span> <span class="op">|</span>
+<span class="ident">fgae</span> <span class="ident">cfgab</span> <span class="ident">fg</span> <span class="ident">bagce</span></code></pre></div>
+<p>Because the digits 1, 4, 7, and 8 each use a unique number of segments, you should be able to tell which combinations of signals correspond to those digits. Counting only digits in the output values (the part after | on each line), in the above example, there are 26 instances of digits that use a unique number of segments (highlighted above).</p>
+<p>In the output values, how many times do digits 1, 4, 7, or 8 appear?</p>
+<p>Your puzzle answer was 479.</p>
+<h3 id="-part-two-" class="section-header"><a href="#-part-two-">— Part Two —</a></h3>
+<p>Through a little deduction, you should now be able to determine the remaining digits. Consider again the first example above:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">acedgfb</span> <span class="ident">cdfbe</span> <span class="ident">gcdfa</span> <span class="ident">fbcad</span> <span class="ident">dab</span> <span class="ident">cefabd</span> <span class="ident">cdfgeb</span> <span class="ident">eafb</span> <span class="ident">cagedb</span> <span class="ident">ab</span> <span class="op">|</span>
+<span class="ident">cdfeb</span> <span class="ident">fcadb</span> <span class="ident">cdfeb</span> <span class="ident">cdbaf</span></code></pre></div>
+<p>After some careful analysis, the mapping between signal wires and segments only make sense in the following configuration:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code> <span class="ident">dddd</span>
+<span class="ident">e</span>    <span class="ident">a</span>
+<span class="ident">e</span>    <span class="ident">a</span>
+ <span class="ident">ffff</span>
+<span class="ident">g</span>    <span class="ident">b</span>
+<span class="ident">g</span>    <span class="ident">b</span>
+ <span class="ident">cccc</span></code></pre></div>
+<p>So, the unique signal patterns would correspond to the following digits:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">acedgfb</span>: <span class="number">8</span>
+<span class="ident">cdfbe</span>: <span class="number">5</span>
+<span class="ident">gcdfa</span>: <span class="number">2</span>
+<span class="ident">fbcad</span>: <span class="number">3</span>
+<span class="ident">dab</span>: <span class="number">7</span>
+<span class="ident">cefabd</span>: <span class="number">9</span>
+<span class="ident">cdfgeb</span>: <span class="number">6</span>
+<span class="ident">eafb</span>: <span class="number">4</span>
+<span class="ident">cagedb</span>: <span class="number">0</span>
+<span class="ident">ab</span>: <span class="number">1</span></code></pre></div>
+<p>Then, the four digits of the output value can be decoded:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">cdfeb</span>: <span class="number">5</span>
+<span class="ident">fcadb</span>: <span class="number">3</span>
+<span class="ident">cdfeb</span>: <span class="number">5</span>
+<span class="ident">cdbaf</span>: <span class="number">3</span></code></pre></div>
+<p>Therefore, the output value for this entry is 5353.</p>
+<p>Following this same process for each entry in the second, larger example above, the output value of each entry can be determined:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">fdgacbe</span> <span class="ident">cefdb</span> <span class="ident">cefbgd</span> <span class="ident">gcbe</span>: <span class="number">8394</span>
+<span class="ident">fcgedb</span> <span class="ident">cgb</span> <span class="ident">dgebacf</span> <span class="ident">gc</span>: <span class="number">9781</span>
+<span class="ident">cg</span> <span class="ident">cg</span> <span class="ident">fdcagb</span> <span class="ident">cbg</span>: <span class="number">1197</span>
+<span class="ident">efabcd</span> <span class="ident">cedba</span> <span class="ident">gadfec</span> <span class="ident">cb</span>: <span class="number">9361</span>
+<span class="ident">gecf</span> <span class="ident">egdcabf</span> <span class="ident">bgf</span> <span class="ident">bfgea</span>: <span class="number">4873</span>
+<span class="ident">gebdcfa</span> <span class="ident">ecba</span> <span class="ident">ca</span> <span class="ident">fadegcb</span>: <span class="number">8418</span>
+<span class="ident">cefg</span> <span class="ident">dcbef</span> <span class="ident">fcge</span> <span class="ident">gbcadfe</span>: <span class="number">4548</span>
+<span class="ident">ed</span> <span class="ident">bcgafe</span> <span class="ident">cdgba</span> <span class="ident">cbgef</span>: <span class="number">1625</span>
+<span class="ident">gbdfcae</span> <span class="ident">bgc</span> <span class="ident">cg</span> <span class="ident">cgb</span>: <span class="number">8717</span>
+<span class="ident">fgae</span> <span class="ident">cfgab</span> <span class="ident">fg</span> <span class="ident">bagce</span>: <span class="number">4315</span></code></pre></div>
+<p>Adding all of the output values in this larger example produces 61229.</p>
+<p>For each entry, determine all of the wire/segment connections and decode the four-digit output values. What do you get if you add up all of the output values?</p>
+<p>Your puzzle answer was 1041746.</p>
+</div></details><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="fs/index.html" title="day08::fs mod">fs</a></div><div class="item-right docblock-short"><p>Filesystem manipulation operations.</p>
+</div></div></div><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.HashMap.html" title="day08::HashMap struct">HashMap</a></div><div class="item-right docblock-short"><p>A <a href="https://doc.rust-lang.org/nightly/std/collections/index.html#use-a-hashmap-when">hash map</a> implemented with quadratic probing and SIMD lookup.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Number.html" title="day08::Number struct">Number</a></div><div class="item-right docblock-short"></div></div></div><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.decode_lines.html" title="day08::decode_lines fn">decode_lines</a></div><div class="item-right docblock-short"><p>Using the example ascii numbers from the problem, we get the frequencies
+of each letter out of all 10 digits 0-9 (inclusive).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.main.html" title="day08::main fn">main</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.part1.html" title="day08::part1 fn">part1</a></div><div class="item-right docblock-short"><p>Just count the output numbers where there is a unique digit (2, 4, 3, and 7)</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.part2.html" title="day08::part2 fn">part2</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.read_input.html" title="day08::read_input fn">read_input</a></div><div class="item-right docblock-short"></div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="day08" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>

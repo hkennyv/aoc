@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="— Day 9: Smoke Basin —"><meta name="keywords" content="rust, rustlang, rust-lang, day09"><title>day09 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../day09/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate day09</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all day09's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></div><div id="sidebar-vars" data-name="day09" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">day09</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/day09/main.rs.html#1-293" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h3 id="-day-9-smoke-basin-" class="section-header"><a href="#-day-9-smoke-basin-">— Day 9: Smoke Basin —</a></h3>
+<p>These caves seem to be lava tubes. Parts are even still volcanically active; small hydrothermal vents release smoke into the caves that slowly settles like rain.</p>
+<p>If you can model how the smoke flows through the caves, you might be able to avoid it and be that much safer. The submarine generates a heightmap of the floor of the nearby caves for you (your puzzle input).</p>
+<p>Smoke flows to the lowest point of the area it’s in. For example, consider the following heightmap:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">2199943210</span>
+<span class="number">3987894921</span>
+<span class="number">9856789892</span>
+<span class="number">8767896789</span>
+<span class="number">9899965678</span></code></pre></div>
+<p>Each number corresponds to the height of a particular location, where 9 is the highest and 0 is the lowest a location can be.</p>
+<p>Your first goal is to find the low points - the locations that are lower than any of its adjacent locations. Most locations have four adjacent locations (up, down, left, and right); locations on the edge or corner of the map have three or two adjacent locations, respectively. (Diagonal locations do not count as adjacent.)</p>
+<p>In the above example, there are four low points, all highlighted: two are in the first row (a 1 and a 0), one is in the third row (a 5), and one is in the bottom row (also a 5). All other locations on the heightmap have some lower adjacent location, and so are not low points.</p>
+<p>The risk level of a low point is 1 plus its height. In the above example, the risk levels of the low points are 2, 1, 6, and 6. The sum of the risk levels of all low points in the heightmap is therefore 15.</p>
+<p>Find all of the low points on your heightmap. What is the sum of the risk levels of all low points on your heightmap?</p>
+<p>Your puzzle answer was 502.</p>
+<h3 id="-part-two-" class="section-header"><a href="#-part-two-">— Part Two —</a></h3>
+<p>Next, you need to find the largest basins so you know what areas are most important to avoid.</p>
+<p>A basin is all locations that eventually flow downward to a single low point. Therefore, every low point has a basin, although some basins are very small. Locations of height 9 do not count as being in any basin, and all other locations will always be part of exactly one basin.</p>
+<p>The size of a basin is the number of locations within the basin, including the low point. The example above has four basins.</p>
+<p>The top-left basin, size 3:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">2199943210</span>
+<span class="number">3987894921</span>
+<span class="number">9856789892</span>
+<span class="number">8767896789</span>
+<span class="number">9899965678</span></code></pre></div>
+<p>The top-right basin, size 9:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">2199943210</span>
+<span class="number">3987894921</span>
+<span class="number">9856789892</span>
+<span class="number">8767896789</span>
+<span class="number">9899965678</span></code></pre></div>
+<p>The middle basin, size 14:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">2199943210</span>
+<span class="number">3987894921</span>
+<span class="number">9856789892</span>
+<span class="number">8767896789</span>
+<span class="number">9899965678</span></code></pre></div>
+<p>The bottom-right basin, size 9:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="number">2199943210</span>
+<span class="number">3987894921</span>
+<span class="number">9856789892</span>
+<span class="number">8767896789</span>
+<span class="number">9899965678</span></code></pre></div>
+<p>Find the three largest basins and multiply their sizes together. In the above example, this is 9 _ 14 _ 9 = 1134.</p>
+<p>What do you get if you multiply together the sizes of the three largest basins?</p>
+<p>Your puzzle answer was 1330560.</p>
+</div></details><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="fs/index.html" title="day09::fs mod">fs</a></div><div class="item-right docblock-short"><p>Filesystem manipulation operations.</p>
+</div></div></div><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.HashSet.html" title="day09::HashSet struct">HashSet</a></div><div class="item-right docblock-short"><p>A <a href="https://doc.rust-lang.org/nightly/std/collections/index.html#use-the-set-variant-of-any-of-these-maps-when">hash set</a> implemented as a <code>HashMap</code> where the value is <code>()</code>.</p>
+</div></div></div><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.find_minimums.html" title="day09::find_minimums fn">find_minimums</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.get_basin.html" title="day09::get_basin fn">get_basin</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.get_bounds.html" title="day09::get_bounds fn">get_bounds</a></div><div class="item-right docblock-short"><p>Utility function that takes in the max rows and cols and returns two pairs
+of (start, end) indicies for the rows and cols. Clamps the beginning to 0
+if it is less than 0 and clamps the end to the max rows/cols if it is
+greater than the max rows/cols.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.main.html" title="day09::main fn">main</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.part1.html" title="day09::part1 fn">part1</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.part2.html" title="day09::part2 fn">part2</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.read_input.html" title="day09::read_input fn">read_input</a></div><div class="item-right docblock-short"></div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="day09" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>
